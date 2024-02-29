@@ -1,27 +1,111 @@
-[gd_scene format=3 uid="uid://glob2ne8imd8"]
+[gd_scene load_steps=4 format=3 uid="uid://glob2ne8imd8"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://cltg0avp5f7e5" path="res://icon.svg" id="1_8euij"]
+[ext_resource type="Script" path="res://Scripts/BattleTurnManager.gd" id="1_biufx"]
+[ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_biufx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 38.0
+offset_top = 234.0
+offset_right = 187.0
+offset_bottom = 602.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Attack"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Skill"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Item"
 
 [node name="Button4" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Guard"
 
 [node name="Button5" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Flee"
+
+[node name="CharArrow" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(356, 510)
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_6bht8")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.247059, 0, 1)
+position = Vector2(415, 312)
+texture = ExtResource("1_8euij")
+
+[node name="EnemySprite2" type="Sprite2D" parent="."]
+modulate = Color(0, 0.247059, 0.247059, 1)
+position = Vector2(695, 312)
+texture = ExtResource("1_8euij")
+
+[node name="PCContainer" type="HBoxContainer" parent="."]
+offset_left = 253.0
+offset_top = 533.0
+offset_right = 874.0
+offset_bottom = 619.0
+
+[node name="Mars" type="VBoxContainer" parent="PCContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PCContainer/Mars"]
+layout_mode = 2
+text = "Mars"
+
+[node name="ProgressBar" type="ProgressBar" parent="PCContainer/Mars"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="PCContainer/Mars"]
+layout_mode = 2
+
+[node name="Heinrich" type="VBoxContainer" parent="PCContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PCContainer/Heinrich"]
+layout_mode = 2
+text = "Heinrich"
+
+[node name="ProgressBar" type="ProgressBar" parent="PCContainer/Heinrich"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="PCContainer/Heinrich"]
+layout_mode = 2
+
+[node name="Medea" type="VBoxContainer" parent="PCContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PCContainer/Medea"]
+layout_mode = 2
+text = "Medea
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="PCContainer/Medea"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="PCContainer/Medea"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 59.0
+offset_top = 32.0
+offset_right = 1101.0
+offset_bottom = 124.0
