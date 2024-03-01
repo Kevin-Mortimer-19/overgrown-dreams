@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://glob2ne8imd8"]
 
 [ext_resource type="Texture2D" uid="uid://cltg0avp5f7e5" path="res://icon.svg" id="1_8euij"]
-[ext_resource type="Script" path="res://Scripts/BattleTurnManager.gd" id="1_biufx"]
+[ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="1_biufx"]
 [ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
 
 [node name="Battle" type="Node2D"]
