@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://glob2ne8imd8"]
+[gd_scene load_steps=5 format=3 uid="uid://glob2ne8imd8"]
 
 [ext_resource type="Texture2D" uid="uid://cltg0avp5f7e5" path="res://icon.svg" id="1_8euij"]
 [ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="1_biufx"]
 [ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
+[ext_resource type="Script" path="res://Scenes/EnemySelector.gd" id="4_vemh5"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("AttackButton", "SkillButton", "ItemButton", "GuardButton", "FleeButton")]
 script = ExtResource("1_biufx")
@@ -17,6 +18,7 @@ offset_left = 38.0
 offset_top = 234.0
 offset_right = 187.0
 offset_bottom = 602.0
+focus_mode = 2
 
 [node name="AttackButton" type="Button" parent="BattleMainMenu"]
 layout_mode = 2
@@ -114,3 +116,6 @@ offset_left = 59.0
 offset_top = 32.0
 offset_right = 1101.0
 offset_bottom = 124.0
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_vemh5")

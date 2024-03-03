@@ -28,6 +28,11 @@ var players = []
 var enemies = []
 var turn_order
 
+var current_actor: Actor
+
+@onready var battle_menu = $BattleMainMenu
+
+signal enemy_selected(enemy: EnemyActor)
 
 func _ready():
 	# Attributes are, in order: attack, defense, speed, spirit, luck, max/current hp, max/current mp
@@ -43,11 +48,11 @@ func _ready():
 	players.append(Medea)
 	
 	
-	Enemy1 = Actor.new()
-	Enemy1._initialize_actor(Enemy1_stats)
+	Enemy1 = EnemyActor.new()
+	Enemy1._initialize_enemy_actor(Enemy1_stats, Vector2(1,1))
 	enemies.append(Enemy1)
-	Enemy2 = Actor.new()
-	Enemy2._initialize_actor(Enemy2_stats)
+	Enemy2 = EnemyActor.new()
+	Enemy2._initialize_enemy_actor(Enemy2_stats, Vector2(1,1))
 	enemies.append(Enemy2)
 	
 	# Create initial turn order
@@ -57,12 +62,42 @@ func _ready():
 	for i in turn_order.size():
 		print(turn_order[i].stats.actor_name)
 	
-	AttackButton.pressed.connect(attack)
+	current_actor = turn_order[0]
+	print("The first to act is " + current_actor.stats.actor_name + "!")
+	
+	AttackButton.pressed.connect(select_enemy)
+	
+	start_new_turn()
+
+
+func start_new_turn():
+	if current_actor is EnemyActor:
+		print("The " + current_actor.stats.actor_name + " is dancing crazy!")
+		end_turn()
+	else:
+		open_menu()
+
+func end_turn():
+	turn_order.append(turn_order.pop_front())
+	current_actor = turn_order[0]
+	start_new_turn()
+
+func open_menu():
+	battle_menu.visible = true
+	battle_menu.grab_focus()
+
+func close_menu():
+	battle_menu.visible = false
+	battle_menu.release_focus()
+
+
+
+func select_enemy():
+	print(current_actor.stats.actor_name + " attacks!")
+	end_turn()
+
+func interact_with_enemy(fun: Callable, player: Actor):
+	pass
 
 func attack():
 	pass
-	#msg.visible = !msg.visible
-
-func _process(_delta):
-	pass
-
