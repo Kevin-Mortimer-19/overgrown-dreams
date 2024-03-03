@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://bker7unv0ioej"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Stats.gd" id="1_am1ea"]
+
+[resource]
+script = ExtResource("1_am1ea")
+actor_name = "Slower Enemy"
+attack = 10
+defense = 3
+speed = 2
+spirit = 0
+luck = 0
+cur_hp = 50
+max_hp = 50
+cur_mp = 15
+max_mp = 15

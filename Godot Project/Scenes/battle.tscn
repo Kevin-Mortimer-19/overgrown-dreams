@@ -4,36 +4,41 @@
 [ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="1_biufx"]
 [ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("AttackButton", "SkillButton", "ItemButton", "GuardButton", "FleeButton")]
 script = ExtResource("1_biufx")
+AttackButton = NodePath("BattleMainMenu/AttackButton")
+SkillButton = NodePath("BattleMainMenu/SkillButton")
+ItemButton = NodePath("BattleMainMenu/ItemButton")
+GuardButton = NodePath("BattleMainMenu/GuardButton")
+FleeButton = NodePath("BattleMainMenu/FleeButton")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="BattleMainMenu" type="VBoxContainer" parent="."]
 offset_left = 38.0
 offset_top = 234.0
 offset_right = 187.0
 offset_bottom = 602.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="AttackButton" type="Button" parent="BattleMainMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Attack"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="SkillButton" type="Button" parent="BattleMainMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Skill"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="ItemButton" type="Button" parent="BattleMainMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Item"
 
-[node name="Button4" type="Button" parent="VBoxContainer"]
+[node name="GuardButton" type="Button" parent="BattleMainMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Guard"
 
-[node name="Button5" type="Button" parent="VBoxContainer"]
+[node name="FleeButton" type="Button" parent="BattleMainMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Flee"

@@ -1,9 +1,18 @@
-extends Node
+class_name ActorInteractionEngine extends Node
 
-func attack(attacker: Actor, defender: Actor) -> void:
-	var damage = attacker.attack - defender.defense
+# This class mainly contains static functions that deal with two or more Actors interacting during battle
+
+
+static func attack(attacker: Actor, defender: Actor) -> void:
+	var damage = attacker.stats.attack - defender.stats.defense
 	defender.take_damage(damage)
 
-func heal(doctor: Actor, patient: Actor) -> void:
-	var healing = doctor.spirit
+static func heal(doctor: Actor, patient: Actor) -> void:
+	var healing = doctor.stats.spirit
 	patient.heal(healing)
+
+static func compare_speed(actor1: Actor, actor2: Actor):
+	if actor1.stats.speed > actor2.stats.speed:
+		return true
+	else:
+		return false
