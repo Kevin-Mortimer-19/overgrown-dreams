@@ -31,12 +31,19 @@ var turn_order
 var current_actor: Actor
 
 @onready var battle_menu = $BattleMainMenu
+@onready var default_battle_button = $BattleMainMenu/AttackButton
+@onready var enemy_menu = $EnemyContainer
+@onready var default_enemy = $EnemyContainer/EnemyButton
 
-signal enemy_selected(enemy: EnemyActor)
+@export var enemy_button_1: Button
+@export var enemy_button_2: Button
+
+
+signal enemy_selected(fun: Callable, player: Actor, enemy: EnemyActor)
 
 func _ready():
-	# Attributes are, in order: attack, defense, speed, spirit, luck, max/current hp, max/current mp
-	
+	#enemy_menu.grab_focus()
+	# This works, but there's definitely a cleaner way to do it
 	Mars = Actor.new()
 	Mars._initialize_actor(Mars_stats)
 	players.append(Mars)
@@ -49,10 +56,10 @@ func _ready():
 	
 	
 	Enemy1 = EnemyActor.new()
-	Enemy1._initialize_enemy_actor(Enemy1_stats, Vector2(1,1))
+	Enemy1._initialize_enemy_actor(Enemy1_stats, enemy_button_1)
 	enemies.append(Enemy1)
 	Enemy2 = EnemyActor.new()
-	Enemy2._initialize_enemy_actor(Enemy2_stats, Vector2(1,1))
+	Enemy2._initialize_enemy_actor(Enemy2_stats, enemy_button_2)
 	enemies.append(Enemy2)
 	
 	# Create initial turn order
@@ -65,7 +72,9 @@ func _ready():
 	current_actor = turn_order[0]
 	print("The first to act is " + current_actor.stats.actor_name + "!")
 	
-	AttackButton.pressed.connect(select_enemy)
+	# Battle menu signal setup
+	
+	AttackButton.pressed.connect(select_enemy.bind(interaction.attack))
 	
 	start_new_turn()
 
@@ -84,20 +93,27 @@ func end_turn():
 
 func open_menu():
 	battle_menu.visible = true
-	battle_menu.grab_focus()
+	default_battle_button.grab_focus.call_deferred()
 
 func close_menu():
 	battle_menu.visible = false
 	battle_menu.release_focus()
+	print("no menu")
 
+func ui_grab_focus(element: Control):
+	element.grab_focus()
 
-
-func select_enemy():
+func select_enemy(action_function: Callable):
+	default_enemy.grab_focus()
+	for i in enemies:
+		# Current issue: find a way to link a button to an actor
+		i.ui_sprite.pressed.connect(action_function.bind(current_actor, i))
 	print(current_actor.stats.actor_name + " attacks!")
-	end_turn()
+	#end_turn()
 
 func interact_with_enemy(fun: Callable, player: Actor):
 	pass
+#	fun(player, enemy)
 
 func attack():
 	pass

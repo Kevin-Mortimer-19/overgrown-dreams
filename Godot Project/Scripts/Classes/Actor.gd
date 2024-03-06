@@ -9,8 +9,8 @@ var stats: Stats
 signal death
 
 func take_damage(val):
-	stats.cur_health -= val
-	if stats.cur_health <= 0:
+	stats.cur_hp -= val
+	if stats.cur_hp <= 0:
 		death.emit()
 
 func heal(val):
@@ -20,4 +20,5 @@ func heal(val):
 
 func _initialize_actor(src_stats: Stats) -> void:
 	stats = src_stats
+	death.connect(func():print("Dead!"))
 
