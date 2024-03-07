@@ -89,6 +89,7 @@ func start_new_turn():
 func end_turn():
 	turn_order.append(turn_order.pop_front())
 	current_actor = turn_order[0]
+	reset_enemy_select()
 	start_new_turn()
 
 func open_menu():
@@ -100,20 +101,28 @@ func close_menu():
 	battle_menu.release_focus()
 	print("no menu")
 
+func close_all_menus():
+	battle_menu.visible = false
+	for i in battle_menu.get_children():
+		if i.has_focus():
+			i.release_focus()
+	for i in enemy_menu.get_children():
+		if i.has_focus():
+			i.release_focus()
+
 func ui_grab_focus(element: Control):
 	element.grab_focus()
 
-func select_enemy(action_function: Callable):
+func select_enemy(action: Callable):
 	default_enemy.grab_focus()
 	for i in enemies:
-		# Current issue: find a way to link a button to an actor
-		i.ui_sprite.pressed.connect(action_function.bind(current_actor, i))
-	print(current_actor.stats.actor_name + " attacks!")
-	#end_turn()
+		i.ui_sprite.pressed.connect(turn_action.bind(action, current_actor, i))
 
-func interact_with_enemy(fun: Callable, player: Actor):
-	pass
-#	fun(player, enemy)
+func reset_enemy_select():
+	for i in enemies:
+		for j in i.ui_sprite.pressed.get_connections():
+			i.ui_sprite.pressed.disconnect(j["callable"])
 
-func attack():
-	pass
+func turn_action(action: Callable, actor_1: Actor, actor_2: Actor):
+	action.call(actor_1, actor_2)
+	end_turn()
