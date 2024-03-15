@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BattleUITreeNode" load_steps=7 format=3 uid="uid://bokrq5u5u5rvt"]
+
+[ext_resource type="Resource" uid="uid://cpol2owv3mrx0" path="res://Scripts/Battle UI Tree/Nodes/Attack.tres" id="1_bgulu"]
+[ext_resource type="Script" path="res://Scripts/Battle UI Tree/BattleUITreeNode.gd" id="1_lydcw"]
+[ext_resource type="Resource" uid="uid://ud24octe4kry" path="res://Scripts/Battle UI Tree/Nodes/Skill.tres" id="2_r3tsy"]
+[ext_resource type="Resource" uid="uid://h26ldxd8nuw3" path="res://Scripts/Battle UI Tree/Nodes/Item.tres" id="3_ilhrh"]
+[ext_resource type="Resource" uid="uid://dm4nc5237mdvw" path="res://Scripts/Battle UI Tree/Nodes/Guard.tres" id="4_8riw3"]
+[ext_resource type="Resource" uid="uid://c32pfjxpw6a7m" path="res://Scripts/Battle UI Tree/Nodes/Flee.tres" id="5_adjt5"]
+
+[resource]
+script = ExtResource("1_lydcw")
+next_nodes = Array[ExtResource("1_lydcw")]([ExtResource("1_bgulu"), ExtResource("2_r3tsy"), ExtResource("3_ilhrh"), ExtResource("4_8riw3"), ExtResource("5_adjt5")])
+target = 0

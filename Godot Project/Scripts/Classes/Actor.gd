@@ -20,5 +20,5 @@ func heal(val):
 
 func _initialize_actor(src_stats: Stats) -> void:
 	stats = src_stats
-	death.connect(func():print("Dead!"))
+	death.connect(func():print(stats.actor_name + " is dead!"))
 

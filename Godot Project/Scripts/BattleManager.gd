@@ -2,13 +2,17 @@ extends Node
 
 ## Define Actors for the battle prototype
 
-@export var AttackButton: Button
-@export var SkillButton: Button
-@export var ItemButton: Button
-@export var GuardButton: Button
-@export var FleeButton: Button
+#@export var AttackButton: Button
+#@export var SkillButton: Button
+#@export var ItemButton: Button
+#@export var GuardButton: Button
+#@export var FleeButton: Button
+
+#const BUITreeNode = preload("res://Scripts/Battle UI Tree/BattleUITreeNode.gd")
 
 var interaction = ActorInteractionEngine
+var UITree: BattleUITree
+
 
 var Mars: Actor
 var Heinrich: Actor
@@ -31,7 +35,8 @@ var turn_order
 var current_actor: Actor
 
 @onready var battle_menu = $BattleMainMenu
-@onready var default_battle_button = $BattleMainMenu/AttackButton
+@onready var default_battle_button
+#@onready var default_battle_button = $BattleMainMenu/AttackButton
 @onready var enemy_menu = $EnemyContainer
 @onready var default_enemy = $EnemyContainer/EnemyButton
 
@@ -62,6 +67,26 @@ func _ready():
 	Enemy2._initialize_enemy_actor(Enemy2_stats, enemy_button_2)
 	enemies.append(Enemy2)
 	
+	# Battle Menu UI
+	
+	UITree = BattleUITree.new()
+	 
+	UITree.root = BattleUITreeNode.new("", null, {}, 0)
+	var BUI_attack = BattleUITreeNode.new("Attack", UITree.root, {}, 0)
+	UITree.root.append_next(BUI_attack)
+	var BUI_skill= BattleUITreeNode.new("Skill", UITree.root, {}, 0)
+	UITree.root.append_next(BUI_skill)
+	var BUI_item= BattleUITreeNode.new("Item", UITree.root, {}, 0)
+	UITree.root.append_next(BUI_item)
+	var BUI_defend= BattleUITreeNode.new("Defend", UITree.root, {}, 0)
+	UITree.root.append_next(BUI_defend)
+	var BUI_flee= BattleUITreeNode.new("Flee", UITree.root, {}, 0)
+	UITree.root.append_next(BUI_flee)
+	
+	for i in UITree.first_layer_buttons():
+		battle_menu.add_child(i)
+	
+	
 	# Create initial turn order
 	
 	turn_order = players + enemies
@@ -74,7 +99,10 @@ func _ready():
 	
 	# Battle menu signal setup
 	
-	AttackButton.pressed.connect(select_enemy.bind(interaction.attack))
+	#AttackButton.pressed.connect(select_enemy.bind(interaction.attack))
+	UITree.root.find_next("Attack").button.pressed.connect(select_enemy.bind(interaction.attack))
+	default_battle_button = UITree.root.find_next("Attack").button
+	
 	
 	start_new_turn()
 

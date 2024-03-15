@@ -4,13 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="1_biufx"]
 [ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("AttackButton", "SkillButton", "ItemButton", "GuardButton", "FleeButton", "enemy_button_1", "enemy_button_2")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("enemy_button_1", "enemy_button_2")]
 script = ExtResource("1_biufx")
-AttackButton = NodePath("BattleMainMenu/AttackButton")
-SkillButton = NodePath("BattleMainMenu/SkillButton")
-ItemButton = NodePath("BattleMainMenu/ItemButton")
-GuardButton = NodePath("BattleMainMenu/GuardButton")
-FleeButton = NodePath("BattleMainMenu/FleeButton")
 enemy_button_1 = NodePath("EnemyContainer/EnemyButton")
 enemy_button_2 = NodePath("EnemyContainer/EnemyButton2")
 
@@ -21,33 +16,8 @@ offset_right = 187.0
 offset_bottom = 602.0
 focus_mode = 2
 
-[node name="AttackButton" type="Button" parent="BattleMainMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_bottom = NodePath("../SkillButton")
-text = "Attack"
-
-[node name="SkillButton" type="Button" parent="BattleMainMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Skill"
-
-[node name="ItemButton" type="Button" parent="BattleMainMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Item"
-
-[node name="GuardButton" type="Button" parent="BattleMainMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Guard"
-
-[node name="FleeButton" type="Button" parent="BattleMainMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Flee"
-
 [node name="CharArrow" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(356, 510)
 rotation = 1.5708
