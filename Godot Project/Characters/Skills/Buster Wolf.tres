@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c4si7andu51o2"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skill.gd" id="1_thde4"]
+
+[resource]
+script = ExtResource("1_thde4")
+skill_name = ""
+target = 0

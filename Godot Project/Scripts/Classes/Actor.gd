@@ -8,6 +8,10 @@ var stats: Stats
 
 signal death
 
+func _init(src_stats: Stats = Stats.new()):
+	stats = src_stats
+	death.connect(func():print(stats.actor_name + " is dead!"))
+
 func take_damage(val):
 	stats.cur_hp -= val
 	if stats.cur_hp <= 0:
