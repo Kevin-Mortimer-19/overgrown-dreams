@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://ewclln84encs"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skill.gd" id="1_tp1fm"]
+
+[resource]
+script = ExtResource("1_tp1fm")
+skill_name = "Defend"
+target = 3
+effect = 3
+power = 2

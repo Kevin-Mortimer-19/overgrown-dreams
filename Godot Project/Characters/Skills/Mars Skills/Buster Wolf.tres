@@ -4,5 +4,7 @@
 
 [resource]
 script = ExtResource("1_thde4")
-skill_name = ""
-target = 0
+skill_name = "Buster Wolf"
+target = 4
+effect = 1
+power = 3

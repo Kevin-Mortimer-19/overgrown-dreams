@@ -24,11 +24,15 @@ func accept():
 # If there is a next node, call this function
 func next_node(n: String):
 	current_node = current_node.find_next(n)
+	if current_node.submenu != null:
+			current_node.submenu.visible = true
 	focus_on_current()
 
 func previous_node():
 	if current_node.previous_node != null:
 		current_node = current_node.previous_node
+		if current_node.submenu != null:
+			current_node.submenu.visible = false
 		focus_on_current()
 
 func focus_on_current():
@@ -39,6 +43,7 @@ func return_to_root():
 	while current_node.previous_node != null:
 		previous_node()
 
+# This function might need to be reworked at some point.
 func first_layer_buttons() -> Array[Button]:
 	var list : Array[Button] = []
 	for i in root.next_nodes.values():

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dm43g31mbc5tl"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skill.gd" id="1_dkbjp"]
+
+[resource]
+script = ExtResource("1_dkbjp")
+skill_name = "Light Heal"
+target = 2
+effect = 2
+power = 1

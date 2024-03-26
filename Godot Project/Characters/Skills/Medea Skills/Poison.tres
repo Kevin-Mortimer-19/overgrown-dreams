@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bh7iw2r7h8mqx"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skill.gd" id="1_evdlr"]
+
+[resource]
+script = ExtResource("1_evdlr")
+skill_name = "Poison"
+target = 4
+effect = 4
+power = 1

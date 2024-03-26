@@ -27,9 +27,19 @@ func _init(b_name: String = "", previous: BattleUINode = null, next: Dictionary 
 func find_next(node_name: String)-> BattleUINode:
 	return next_nodes[node_name]
 
+func find_all_next()-> Array[BattleUINode]:
+	var list : Array[BattleUINode] = []
+	for i in next_nodes.values():
+		list.append(i)
+	return list
+
 func append_next(next: BattleUINode):
 	next_nodes[next.button_name] = next
 	#next_nodes.append(next)
+
+# BE VERY CAREFUL WITH THIS
+func remove_all_next():
+	next_nodes = {}
 
 func cancel():
 	pass

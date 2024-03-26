@@ -6,9 +6,10 @@ enum BattleTargets {
 	NONE = 0,
 	SELF_ONLY = 1,
 	ALLY = 2,
-	ENEMY = 3,
-	ALL_ALLIES = 4,
-	ALL_ENEMIES = 5,
+	OTHER_ALLY = 3,
+	ENEMY = 4,
+	ALL_ALLIES = 5,
+	ALL_ENEMIES = 6,
 }
 
 enum SkillEffects {

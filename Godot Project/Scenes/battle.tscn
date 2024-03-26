@@ -17,6 +17,7 @@ offset_bottom = 602.0
 focus_mode = 2
 
 [node name="SkillMenu" type="VBoxContainer" parent="."]
+visible = false
 offset_left = 187.0
 offset_top = 234.0
 offset_right = 336.0

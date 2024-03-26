@@ -15,6 +15,10 @@ var Mars_stats = load("res://Characters/Stats/Mars.tres")
 var Heinrich_stats = load("res://Characters/Stats/Heinrich.tres")
 var Medea_stats = load("res://Characters/Stats/Medea.tres")
 
+var Mars_skills = load("res://Characters/Skillsets/MarsSkillset.tres")
+var Heinrich_skills = load("res://Characters/Skillsets/HeinrichSkillset.tres")
+var Medea_skills = load("res://Characters/Skillsets/MedeaSkillset.tres")
+
 var Enemy1_stats = load("res://Characters/Stats/Enemy1.tres")
 var Enemy2_stats = load("res://Characters/Stats/Enemy2.tres")
 
@@ -41,9 +45,9 @@ signal enemy_selected(fun: Callable, player: Actor, enemy: EnemyActor)
 
 func _ready():
 	#Initialize all actors and lists
-	Mars = Actor.new(Mars_stats)
-	Heinrich = Actor.new(Heinrich_stats)
-	Medea = Actor.new(Medea_stats)
+	Mars = HeroActor.new(Mars_stats, Mars_skills)
+	Heinrich = HeroActor.new(Heinrich_stats, Heinrich_skills)
+	Medea = HeroActor.new(Medea_stats, Medea_skills)
 	players = [Mars, Heinrich, Medea]
 	#This can be automated later for dynamic enemy encounters
 	Enemy1 = EnemyActor.new(Enemy1_stats, enemy_button_1)
@@ -80,6 +84,7 @@ func _ready():
 	
 	# Battle menu signal setup
 	UITree.root.find_next("Attack").button.pressed.connect(select_enemy.bind(interaction.attack))
+	UITree.root.find_next("Skill").button.pressed.connect(open_skill_menu)
 	default_battle_button = UITree.root.find_next("Attack").button
 	
 	start_new_turn()
@@ -94,28 +99,31 @@ func start_new_turn():
 		player_control = false
 		print("The " + current_actor.stats.actor_name + " is dancing crazy!")
 		end_turn()
-	else:
+	elif current_actor is HeroActor:
 		player_control = true
+		create_skills_menu(current_actor)
 		open_menu()
 
 func end_turn():
 	UITree.enemy_select = false
 	turn_order.append(turn_order.pop_front())
 	current_actor = turn_order[0]
+	wipe_skills_menu()
 	reset_enemy_select()
 	start_new_turn()
 
 func open_menu():
 	battle_menu.visible = true
 	UITree.return_to_root()
-	UITree.next_node("Attack")
-	default_battle_button.grab_focus.call_deferred()
+	#UITree.next_node("Attack")
+	default_battle_button.grab_focus()
 
 func close_menu():
 	battle_menu.visible = false
 	battle_menu.release_focus()
 	print("no menu")
 
+# Might need to be deleted
 func close_all_menus():
 	battle_menu.visible = false
 	for i in battle_menu.get_children():
@@ -124,6 +132,25 @@ func close_all_menus():
 	for i in enemy_menu.get_children():
 		if i.has_focus():
 			i.release_focus()
+
+func open_skill_menu():
+	UITree.next_node("Skill")
+
+func create_skills_menu(hero: HeroActor):
+	var skill_node: BattleUINode = UITree.root.find_next("Skill")
+	for i in hero.skills.SkillList:
+		print(i.skill_name)
+		var option = BattleUINode.new(i.skill_name, skill_node, {}, i.target, null)
+		skill_node.append_next(option)
+	for j in skill_node.find_all_next():
+		skillmenu.add_child(j.button)
+
+func wipe_skills_menu():
+	var skill_node: BattleUINode = UITree.root.find_next("Skill")
+	skill_node.remove_all_next()
+	for i in skillmenu.get_children():
+		i.queue_free()
+
 
 func select_enemy(action: Callable):
 	UITree.enemy_select = true

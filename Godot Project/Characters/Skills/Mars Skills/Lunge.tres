@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c6w2t82uumyc2"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skill.gd" id="1_vqh60"]
+
+[resource]
+script = ExtResource("1_vqh60")
+skill_name = "Lunge"
+target = 4
+effect = 1
+power = 1

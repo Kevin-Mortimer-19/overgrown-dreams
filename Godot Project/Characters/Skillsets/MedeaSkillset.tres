@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skillset" load_steps=5 format=3 uid="uid://cfbacxcs83fm8"]
+
+[ext_resource type="Resource" uid="uid://b3wn0sgv482no" path="res://Characters/Skills/Medea Skills/Flashbang.tres" id="1_brqsd"]
+[ext_resource type="Resource" uid="uid://bh7iw2r7h8mqx" path="res://Characters/Skills/Medea Skills/Poison.tres" id="2_1t72q"]
+[ext_resource type="Resource" uid="uid://cfprf0gjd6er6" path="res://Characters/Skills/Medea Skills/Taser.tres" id="3_yd7if"]
+[ext_resource type="Script" path="res://Scripts/Resources/Skillset.gd" id="4_dxgon"]
+
+[resource]
+script = ExtResource("4_dxgon")
+SkillList = Array[Resource("res://Scripts/Resources/Skill.gd")]([ExtResource("1_brqsd"), ExtResource("2_1t72q"), ExtResource("3_yd7if")])
