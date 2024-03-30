@@ -19,9 +19,9 @@ focus_mode = 2
 [node name="SkillMenu" type="VBoxContainer" parent="."]
 visible = false
 offset_left = 187.0
-offset_top = 234.0
+offset_top = 300.0
 offset_right = 336.0
-offset_bottom = 234.0
+offset_bottom = 300.0
 
 [node name="ItemMenu" type="VBoxContainer" parent="."]
 offset_left = 187.0
@@ -100,13 +100,13 @@ offset_bottom = 406.0
 focus_mode = 2
 
 [node name="EnemyButton" type="Button" parent="EnemyContainer"]
-self_modulate = Color(0.247059, 0.247059, 0, 1)
+self_modulate = Color(0.784314, 0.00392157, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 6
 icon = ExtResource("1_8euij")
 
 [node name="EnemyButton2" type="Button" parent="EnemyContainer"]
-self_modulate = Color(0, 0.247059, 0.247059, 1)
+self_modulate = Color(0, 0.745098, 0.741176, 1)
 layout_mode = 2
 size_flags_horizontal = 6
 icon = ExtResource("1_8euij")

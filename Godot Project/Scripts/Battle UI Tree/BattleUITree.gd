@@ -13,31 +13,34 @@ func _init(r: BattleUINode = BattleUINode.new()):
 
 func cancel():
 	if enemy_select:
-		focus_on_current()
-	else:
-		previous_node()
-
-
-func accept():
-	pass
+		enemy_select = false
+	previous_node()
 
 # If there is a next node, call this function
 func next_node(n: String):
 	current_node = current_node.find_next(n)
+	if current_node.has_next():
+		focus_on_first()
 	if current_node.submenu != null:
-			current_node.submenu.visible = true
-	focus_on_current()
+		current_node.submenu.visible = true
 
 func previous_node():
 	if current_node.previous_node != null:
-		current_node = current_node.previous_node
 		if current_node.submenu != null:
 			current_node.submenu.visible = false
-		focus_on_current()
+		current_node = current_node.previous_node
+		focus_on_first()
+
+func focus_on_first():
+	current_node.find_first().button.grab_focus()
 
 func focus_on_current():
 	if current_node.button_name != "":
 		current_node.button.grab_focus()
+
+func target_selection(node_name: String):
+	next_node(node_name)
+	enemy_select = true
 
 func return_to_root():
 	while current_node.previous_node != null:

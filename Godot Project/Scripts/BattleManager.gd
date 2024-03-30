@@ -83,7 +83,8 @@ func _ready():
 	print("The first to act is " + current_actor.stats.actor_name + "!")
 	
 	# Battle menu signal setup
-	UITree.root.find_next("Attack").button.pressed.connect(select_enemy.bind(interaction.attack))
+	var attack_action = Action.new(interaction.attack, Data.BattleTargets.ENEMY)
+	UITree.root.find_next("Attack").button.pressed.connect(select_target.bind("Attack", attack_action, Data.BattleTargets.ENEMY))
 	UITree.root.find_next("Skill").button.pressed.connect(open_skill_menu)
 	default_battle_button = UITree.root.find_next("Attack").button
 	
@@ -115,8 +116,7 @@ func end_turn():
 func open_menu():
 	battle_menu.visible = true
 	UITree.return_to_root()
-	#UITree.next_node("Attack")
-	default_battle_button.grab_focus()
+	UITree.focus_on_first()
 
 func close_menu():
 	battle_menu.visible = false
@@ -139,7 +139,6 @@ func open_skill_menu():
 func create_skills_menu(hero: HeroActor):
 	var skill_node: BattleUINode = UITree.root.find_next("Skill")
 	for i in hero.skills.SkillList:
-		print(i.skill_name)
 		var option = BattleUINode.new(i.skill_name, skill_node, {}, i.target, null)
 		skill_node.append_next(option)
 	for j in skill_node.find_all_next():
@@ -151,12 +150,20 @@ func wipe_skills_menu():
 	for i in skillmenu.get_children():
 		i.queue_free()
 
-
-func select_enemy(action: Callable):
-	UITree.enemy_select = true
-	default_enemy.grab_focus()
-	for i in enemies:
-		i.ui_sprite.pressed.connect(turn_action.bind(action, current_actor, i))
+func select_target(node_name: String, action: Action, target_type: Data.BattleTargets):
+	UITree.target_selection(node_name)
+	match target_type:
+		Data.BattleTargets.ENEMY:
+			#UITree.target_selection(node_name)
+			default_enemy.grab_focus()
+			for i in enemies:
+				i.ui_sprite.pressed.connect(turn_action.bind(action.action, current_actor, i))
+		Data.BattleTargets.ALLY:
+			pass
+		Data.BattleTargets.ALL_ALLIES:
+			pass
+		Data.BattleTargets.ALL_ENEMIES:
+			pass
 
 func reset_enemy_select():
 	for i in enemies:
