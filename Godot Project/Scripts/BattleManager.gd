@@ -139,10 +139,12 @@ func open_skill_menu():
 func create_skills_menu(hero: HeroActor):
 	var skill_node: BattleUINode = UITree.root.find_next("Skill")
 	for i in hero.skills.SkillList:
-		var option = BattleUINode.new(i.skill_name, skill_node, {}, i.target, null)
+		var option = BattleUISkillNode.new(i, i.skill_name, skill_node, {}, i.target, null)
 		skill_node.append_next(option)
 	for j in skill_node.find_all_next():
 		skillmenu.add_child(j.button)
+		var fun = find_skill_func(j.skill)
+		j.button.pressed.connect(select_target.bind(j.button_name, Action.new(fun, j.skill.target)))
 
 func wipe_skills_menu():
 	var skill_node: BattleUINode = UITree.root.find_next("Skill")
@@ -150,14 +152,15 @@ func wipe_skills_menu():
 	for i in skillmenu.get_children():
 		i.queue_free()
 
-func select_target(node_name: String, action: Action, target_type: Data.BattleTargets):
+func select_target(node_name: String, action: Action):
 	UITree.target_selection(node_name)
-	match target_type:
+	match action.target:
 		Data.BattleTargets.ENEMY:
 			#UITree.target_selection(node_name)
 			default_enemy.grab_focus()
 			for i in enemies:
-				i.ui_sprite.pressed.connect(turn_action.bind(action.action, current_actor, i))
+				var a: Array[Actor] = [i]
+				i.ui_sprite.pressed.connect(turn_action.bind(action.action, current_actor, a))
 		Data.BattleTargets.ALLY:
 			pass
 		Data.BattleTargets.ALL_ALLIES:
@@ -170,6 +173,23 @@ func reset_enemy_select():
 		for j in i.ui_sprite.pressed.get_connections():
 			i.ui_sprite.pressed.disconnect(j["callable"])
 
-func turn_action(action: Callable, actor_1: Actor, actor_2: Actor):
-	action.call(actor_1, actor_2)
+func turn_action(action: Callable, actor_1: Actor, other_actors: Array[Actor]):
+	action.call(actor_1, other_actors)
 	end_turn()
+
+func find_skill_func(s: Skill) -> Callable:
+	match s.effect:
+		Data.SkillEffects.ATTACK:
+			return interaction.attack
+		Data.SkillEffects.HEAL:
+			return interaction.heal
+		Data.SkillEffects.SHIELD:
+			return interaction.shield
+		Data.SkillEffects.AILMENT:
+			return interaction.inflict_ailment
+		Data.SkillEffects.CHARGE:
+			return interaction.charge
+		Data.SkillEffects.BUFF:
+			return interaction.buff
+		_:
+			return interaction.attack
