@@ -32,6 +32,11 @@ var current_actor: Actor
 @onready var default_battle_button
 @onready var enemy_menu = $EnemyContainer
 @onready var default_enemy = $EnemyContainer/EnemyButton
+var default_player
+
+@export var Mars_button: Button
+@export var Heinrich_button: Button
+@export var Medea_button: Button
 
 @export var enemy_button_1: Button
 @export var enemy_button_2: Button
@@ -45,10 +50,12 @@ signal enemy_selected(fun: Callable, player: Actor, enemy: EnemyActor)
 
 func _ready():
 	#Initialize all actors and lists
-	Mars = HeroActor.new(Mars_stats, Mars_skills)
-	Heinrich = HeroActor.new(Heinrich_stats, Heinrich_skills)
-	Medea = HeroActor.new(Medea_stats, Medea_skills)
+	Mars = HeroActor.new(Mars_stats, Mars_skills, Mars_button)
+	Heinrich = HeroActor.new(Heinrich_stats, Heinrich_skills, Heinrich_button)
+	Medea = HeroActor.new(Medea_stats, Medea_skills, Medea_button)
 	players = [Mars, Heinrich, Medea]
+	default_player = Mars_button
+	
 	#This can be automated later for dynamic enemy encounters
 	Enemy1 = EnemyActor.new(Enemy1_stats, enemy_button_1)
 	Enemy2 = EnemyActor.new(Enemy2_stats, enemy_button_2)
@@ -84,7 +91,7 @@ func _ready():
 	
 	# Battle menu signal setup
 	var attack_action = Action.new(interaction.attack, Data.BattleTargets.ENEMY)
-	UITree.root.find_next("Attack").button.pressed.connect(select_target.bind("Attack", attack_action, Data.BattleTargets.ENEMY))
+	UITree.root.find_next("Attack").button.pressed.connect(select_target.bind("Attack", attack_action))
 	UITree.root.find_next("Skill").button.pressed.connect(open_skill_menu)
 	default_battle_button = UITree.root.find_next("Attack").button
 	
@@ -160,22 +167,35 @@ func select_target(node_name: String, action: Action):
 			default_enemy.grab_focus()
 			for i in enemies:
 				var a: Array[Actor] = [i]
-				i.ui_sprite.pressed.connect(turn_action.bind(action.action, current_actor, a))
+				i.ui_button.pressed.connect(turn_action.bind(action.action, current_actor, a))
 		Data.BattleTargets.ALLY:
-			pass
+			default_player.grab_focus()
+			for i in players:
+				var a: Array[Actor] = [i]
+				i.ui_button.pressed.connect(turn_action.bind(action.action, current_actor, a))
 		Data.BattleTargets.ALL_ALLIES:
-			pass
+			for p in players:
+				single_action(action.action, current_actor, [p])
 		Data.BattleTargets.ALL_ENEMIES:
-			pass
+			for e in enemies:
+				single_action(action.action, current_actor, [e])
+			end_turn()
 
 func reset_enemy_select():
 	for i in enemies:
-		for j in i.ui_sprite.pressed.get_connections():
-			i.ui_sprite.pressed.disconnect(j["callable"])
+		for j in i.ui_button.pressed.get_connections():
+			i.ui_button.pressed.disconnect(j["callable"])
+	for i in players:
+		for j in i.ui_button.pressed.get_connections():
+			i.ui_button.pressed.disconnect(j["callable"])
 
 func turn_action(action: Callable, actor_1: Actor, other_actors: Array[Actor]):
-	action.call(actor_1, other_actors)
+	single_action(action, actor_1, other_actors)
+	print("action taken")
 	end_turn()
+
+func single_action(action: Callable, actor_1: Actor,  other_actors: Array[Actor]):
+	action.call(actor_1, other_actors)
 
 func find_skill_func(s: Skill) -> Callable:
 	match s.effect:

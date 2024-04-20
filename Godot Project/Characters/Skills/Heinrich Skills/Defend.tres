@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_tp1fm")
 skill_name = "Defend"
-target = 3
+target = 2
 effect = 3
 power = 2

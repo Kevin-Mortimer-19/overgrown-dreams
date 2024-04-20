@@ -4,11 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="1_biufx"]
 [ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("Mars_button", "Heinrich_button", "Medea_button", "enemy_button_1", "enemy_button_2")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("enemy_button_1", "enemy_button_2")]
 script = ExtResource("1_biufx")
-Mars_button = NodePath("PCContainer/Mars/Button")
-Heinrich_button = NodePath("PCContainer/Heinrich/Button")
-Medea_button = NodePath("PCContainer/Medea/Button")
 enemy_button_1 = NodePath("EnemyContainer/EnemyButton")
 enemy_button_2 = NodePath("EnemyContainer/EnemyButton2")
 
