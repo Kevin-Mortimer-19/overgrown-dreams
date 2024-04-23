@@ -30,3 +30,10 @@ enum SkillPower {
 	SEVERE = 4,
 	ALMIGHTY = 5,
 }
+
+enum StatusTypes {
+	CHARGE = 0,
+	BUFF = 1,
+	AILMENT = 2,
+	PERMANENT = 3,
+}
