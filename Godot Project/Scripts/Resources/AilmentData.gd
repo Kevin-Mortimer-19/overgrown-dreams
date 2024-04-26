@@ -1,3 +1,3 @@
 class_name AilmentData extends StatusData
 
-@export var name: String
+#@export var name: String

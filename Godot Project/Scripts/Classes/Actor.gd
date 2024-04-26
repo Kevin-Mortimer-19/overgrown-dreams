@@ -7,11 +7,14 @@ class_name Actor extends Node
 var stats: Stats
 var ui_button: Button
 
+var sm: StatusManager
+
 signal death
 
 func _init(src_stats: Stats = Stats.new(), src_button: Button = Button.new()):
 	stats = src_stats
 	ui_button = src_button
+	sm = StatusManager.new()
 	death.connect(func():print(stats.actor_name + " is dead!"))
 
 func take_damage(val):

@@ -1,0 +1,1 @@
+class_name BuffData extends StatusData

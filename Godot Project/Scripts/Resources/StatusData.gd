@@ -1,4 +1,4 @@
 class_name StatusData extends Resource
 
-@export var max_duration: int = 3
+@export var type: Data.StatusTypes
 @export var status_name: String
