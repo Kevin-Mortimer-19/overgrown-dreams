@@ -31,3 +31,8 @@ func _initialize_actor(src_stats: Stats) -> void:
 	stats = src_stats
 	death.connect(func():print(stats.actor_name + " is dead!"))
 
+func add_status(s: StatusData):
+	sm.add_status(s)
+
+func status_check():
+	sm.end_of_turn()

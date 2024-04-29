@@ -1,7 +1,7 @@
 class_name StatusManager extends Node
 
-var BuffManager: Array[BuffData] = []
-var AilmentManager: Array[AilmentData] = []
+var BuffManager: Array[Status] = []
+var AilmentManager: Array[Status] = []
 
 func add_status(data: StatusData):
 	var s = null
@@ -28,5 +28,7 @@ func apply_status(s: Status, a: Array):
 func end_of_turn():
 	for a in AilmentManager:
 		a.turn_passed()
+		print("The ailment " + a.status_name + " has " + str(a.turns_remaining) + " turns remaining.")
 	for b in BuffManager:
 		b.turn_passed()
+		print("The buff " + b.status_name + " has " + str(b.turns_remaining) + " turns remaining.")

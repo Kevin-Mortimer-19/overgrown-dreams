@@ -82,16 +82,15 @@ func _ready():
 	# Create initial turn order
 	turn_order = players + enemies
 	turn_order.sort_custom(interaction.compare_speed)
-	#Temporary print statement
-	for i in turn_order.size():
-		print(turn_order[i].stats.actor_name)
+	
+	#print("Turn order:")
+	#for i in turn_order.size():
+		#print(turn_order[i].stats.actor_name)
 	
 	current_actor = turn_order[0]
 	print("The first to act is " + current_actor.stats.actor_name + "!")
 	
 	# Battle menu signal setup
-	var attack_action = Action.new(interaction.attack, Data.BattleTargets.ENEMY)
-	UITree.root.find_next("Attack").button.pressed.connect(select_target.bind("Attack", attack_action))
 	UITree.root.find_next("Skill").button.pressed.connect(open_skill_menu)
 	default_battle_button = UITree.root.find_next("Attack").button
 	
@@ -108,15 +107,18 @@ func start_new_turn():
 		print("The " + current_actor.stats.actor_name + " is dancing crazy!")
 		end_turn()
 	elif current_actor is HeroActor:
+		var attack_action = Action.new(current_actor, interaction.attack, Data.BattleTargets.ENEMY)
+		UITree.root.find_next("Attack").button.pressed.connect(select_target.bind("Attack", attack_action))
 		player_control = true
 		create_skills_menu(current_actor)
 		open_menu()
 
 func end_turn():
 	UITree.enemy_select = false
+	current_actor.status_check()
 	turn_order.append(turn_order.pop_front())
 	current_actor = turn_order[0]
-	wipe_skills_menu()
+	wipe_player_menus()
 	reset_enemy_select()
 	start_new_turn()
 
@@ -128,7 +130,6 @@ func open_menu():
 func close_menu():
 	battle_menu.visible = false
 	battle_menu.release_focus()
-	print("no menu")
 
 # Might need to be deleted
 func close_all_menus():
@@ -151,13 +152,18 @@ func create_skills_menu(hero: HeroActor):
 	for j in skill_node.find_all_next():
 		skillmenu.add_child(j.button)
 		var fun = find_skill_func(j.skill)
-		j.button.pressed.connect(select_target.bind(j.button_name, Action.new(fun, j.skill.target)))
+		var a = Action.new(current_actor, fun, j.skill.target, j.skill.power, j.skill.ailment_type, j.skill.buff_type)
+		j.button.pressed.connect(select_target.bind(j.button_name, a))
 
-func wipe_skills_menu():
+func wipe_player_menus():
 	var skill_node: BattleUINode = UITree.root.find_next("Skill")
 	skill_node.remove_all_next()
 	for i in skillmenu.get_children():
 		i.queue_free()
+	var attack_node: BattleUINode = UITree.root.find_next("Attack")
+	for i in attack_node.button.pressed.get_connections():
+		attack_node.button.pressed.disconnect(i["callable"])
+
 
 func select_target(node_name: String, action: Action):
 	UITree.target_selection(node_name)
@@ -167,18 +173,18 @@ func select_target(node_name: String, action: Action):
 			default_enemy.grab_focus()
 			for i in enemies:
 				var a: Array[Actor] = [i]
-				i.ui_button.pressed.connect(turn_action.bind(action.action, current_actor, a))
+				i.ui_button.pressed.connect(turn_action.bind(action, a))
 		Data.BattleTargets.ALLY:
 			default_player.grab_focus()
 			for i in players:
 				var a: Array[Actor] = [i]
-				i.ui_button.pressed.connect(turn_action.bind(action.action, current_actor, a))
+				i.ui_button.pressed.connect(turn_action.bind(action, a))
 		Data.BattleTargets.ALL_ALLIES:
 			for p in players:
-				single_action(action.action, current_actor, [p])
+				single_action(action, [p])
 		Data.BattleTargets.ALL_ENEMIES:
 			for e in enemies:
-				single_action(action.action, current_actor, [e])
+				single_action(action, [e])
 			end_turn()
 
 func reset_enemy_select():
@@ -189,13 +195,13 @@ func reset_enemy_select():
 		for j in i.ui_button.pressed.get_connections():
 			i.ui_button.pressed.disconnect(j["callable"])
 
-func turn_action(action: Callable, actor_1: Actor, other_actors: Array[Actor]):
-	single_action(action, actor_1, other_actors)
-	print("action taken")
+func turn_action(action: Action, targets: Array[Actor]):
+	single_action(action, targets)
 	end_turn()
 
-func single_action(action: Callable, actor_1: Actor,  other_actors: Array[Actor]):
-	action.call(actor_1, other_actors)
+func single_action(action: Action, targets: Array[Actor]):
+	action.action.call(action.initiator, targets, action.skillpower, action.buff, action.ailment)
+
 
 func find_skill_func(s: Skill) -> Callable:
 	match s.effect:

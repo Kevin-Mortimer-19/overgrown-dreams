@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AilmentData" load_steps=2 format=3 uid="uid://tumcxw6p8jxf"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/AilmentData.gd" id="1_xech3"]
+
+[resource]
+script = ExtResource("1_xech3")
+type = 2
+status_name = "Sap"

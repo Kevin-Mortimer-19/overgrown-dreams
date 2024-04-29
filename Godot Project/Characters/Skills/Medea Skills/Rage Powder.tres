@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_evdlr")
-skill_name = "Poison"
+skill_name = "Rage Powder"
 target = 4
 effect = 4
 power = 1
+buff_type = 0
+ailment_type = 2

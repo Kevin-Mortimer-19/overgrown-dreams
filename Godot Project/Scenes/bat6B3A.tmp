@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://glob2ne8imd8"]
+
+[ext_resource type="Texture2D" uid="uid://cltg0avp5f7e5" path="res://icon.svg" id="1_8euij"]
+[ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="1_biufx"]
+[ext_resource type="Texture2D" uid="uid://c3vss7q877taf" path="res://Assets/Sprites/arrow.png" id="2_6bht8"]
+
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("Mars_button", "Heinrich_button", "Medea_button", "enemy_button_1", "enemy_button_2")]
+script = ExtResource("1_biufx")
+Mars_button = NodePath("PCContainer/Mars/Button")
+Heinrich_button = NodePath("PCContainer/Heinrich/Button")
+Medea_button = NodePath("PCContainer/Medea/Button")
+enemy_button_1 = NodePath("EnemyContainer/EnemyButton")
+enemy_button_2 = NodePath("EnemyContainer/EnemyButton2")
+
+[node name="BattleMainMenu" type="VBoxContainer" parent="."]
+offset_left = 38.0
+offset_top = 234.0
+offset_right = 187.0
+offset_bottom = 602.0
+focus_mode = 2
+
+[node name="SkillMenu" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 187.0
+offset_top = 300.0
+offset_right = 336.0
+offset_bottom = 300.0
+
+[node name="ItemMenu" type="VBoxContainer" parent="."]
+offset_left = 187.0
+offset_top = 234.0
+offset_right = 336.0
+offset_bottom = 234.0
+
+[node name="CharArrow" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(356, 510)
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_6bht8")
+
+[node name="PCContainer" type="HBoxContainer" parent="."]
+offset_left = 253.0
+offset_top = 533.0
+offset_right = 874.0
+offset_bottom = 619.0
+
+[node name="Mars" type="VBoxContainer" parent="PCContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PCContainer/Mars"]
+layout_mode = 2
+text = "Mars"
+
+[node name="ProgressBar" type="ProgressBar" parent="PCContainer/Mars"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="PCContainer/Mars"]
+layout_mode = 2
+
+[node name="Heinrich" type="VBoxContainer" parent="PCContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PCContainer/Heinrich"]
+layout_mode = 2
+text = "Heinrich"
+
+[node name="ProgressBar" type="ProgressBar" parent="PCContainer/Heinrich"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="PCContainer/Heinrich"]
+layout_mode = 2
+
+[node name="Medea" type="VBoxContainer" parent="PCContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="PCContainer/Medea"]
+layout_mode = 2
+text = "Medea
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="PCContainer/Medea"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="PCContainer/Medea"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 59.0
+offset_top = 32.0
+offset_right = 1101.0
+offset_bottom = 124.0
+
+[node name="EnemyContainer" type="HBoxContainer" parent="."]
+offset_left = 394.0
+offset_top = 270.0
+offset_right = 735.0
+offset_bottom = 406.0
+focus_mode = 2
+
+[node name="EnemyButton" type="Button" parent="EnemyContainer"]
+self_modulate = Color(0.784314, 0.00392157, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+icon = ExtResource("1_8euij")
+
+[node name="EnemyButton2" type="Button" parent="EnemyContainer"]
+self_modulate = Color(0, 0.745098, 0.741176, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+icon = ExtResource("1_8euij")
