@@ -33,9 +33,9 @@ func take_damage(val):
 		death.emit()
 
 func heal(val):
-	stats.cur_health += val
-	if stats.cur_health > stats.max_health:
-		stats.cur_health = stats.max_health
+	stats.cur_hp += val
+	if stats.cur_hp > stats.max_hp:
+		stats.cur_hp = stats.max_hp
 
 func _initialize_actor(src_stats: Stats) -> void:
 	stats = src_stats

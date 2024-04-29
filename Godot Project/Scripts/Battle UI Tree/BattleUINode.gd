@@ -28,7 +28,7 @@ func find_next(node_name: String)-> BattleUINode:
 	return next_nodes[node_name]
 
 func find_first() -> BattleUINode:
-	if next_nodes != null:
+	if next_nodes != null and next_nodes != {}:
 		var v = next_nodes.values()
 		return v[0]
 	else:

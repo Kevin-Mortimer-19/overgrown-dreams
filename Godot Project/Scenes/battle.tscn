@@ -27,10 +27,11 @@ offset_right = 336.0
 offset_bottom = 300.0
 
 [node name="ItemMenu" type="VBoxContainer" parent="."]
+visible = false
 offset_left = 187.0
-offset_top = 234.0
+offset_top = 384.0
 offset_right = 336.0
-offset_bottom = 234.0
+offset_bottom = 384.0
 
 [node name="CharArrow" type="Sprite2D" parent="."]
 visible = false

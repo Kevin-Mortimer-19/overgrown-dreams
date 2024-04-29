@@ -46,6 +46,11 @@ func return_to_root():
 	while current_node.previous_node != null:
 		previous_node()
 
+func last_item_used(ism):
+	ism.visible = false
+	current_node = root
+	current_node.find_next("Item").button.disabled = true
+
 # This function might need to be reworked at some point.
 func first_layer_buttons() -> Array[Button]:
 	var list : Array[Button] = []

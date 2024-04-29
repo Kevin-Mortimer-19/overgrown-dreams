@@ -28,6 +28,15 @@ var turn_order
 
 var current_actor: Actor
 
+var item_list: Array[Item]
+# Temporary items to ensure the battle UI works properly
+var salve = preload("res://Items/Health Potion.tres")
+var numb_powder = preload("res://Items/Numbing Powder.tres")
+
+# Temporary variable to store the currently selected item, will be replaced after rewriting target select func
+var selected_item: Item
+
+
 @onready var battle_menu = $BattleMainMenu
 @onready var default_battle_button
 @onready var enemy_menu = $EnemyContainer
@@ -61,6 +70,12 @@ func _ready():
 	Enemy2 = EnemyActor.new(Enemy2_stats, enemy_button_2)
 	enemies = [Enemy1, Enemy2]
 	
+	# Initialize list of items
+	item_list = []
+	item_list.append(salve)
+	item_list.append(numb_powder)
+	
+	
 	# Battle Menu UI
 	UITree = BattleUITree.new(BattleUINode.new("", null, {}, Data.BattleTargets.NONE, null))
 	
@@ -92,6 +107,7 @@ func _ready():
 	
 	# Battle menu signal setup
 	UITree.root.find_next("Skill").button.pressed.connect(open_skill_menu)
+	UITree.root.find_next("Item").button.pressed.connect(open_item_menu)
 	default_battle_button = UITree.root.find_next("Attack").button
 	
 	start_new_turn()
@@ -113,6 +129,7 @@ func start_new_turn():
 		UITree.root.find_next("Defend").button.pressed.connect(actor_defend.bind(current_actor))
 		player_control = true
 		create_skills_menu(current_actor)
+		create_items_menu()
 		open_menu()
 
 func end_turn():
@@ -120,6 +137,7 @@ func end_turn():
 	current_actor.status_check()
 	turn_order.append(turn_order.pop_front())
 	current_actor = turn_order[0]
+	selected_item = null
 	wipe_player_menus()
 	reset_enemy_select()
 	start_new_turn()
@@ -146,6 +164,9 @@ func close_all_menus():
 func open_skill_menu():
 	UITree.next_node("Skill")
 
+func open_item_menu():
+	UITree.next_node("Item")
+
 func create_skills_menu(hero: HeroActor):
 	var skill_node: BattleUINode = UITree.root.find_next("Skill")
 	for i in hero.skills.SkillList:
@@ -157,10 +178,27 @@ func create_skills_menu(hero: HeroActor):
 		var a = Action.new(current_actor, fun, j.skill.target, j.skill.power, j.skill.ailment_type, j.skill.buff_type)
 		j.button.pressed.connect(select_target.bind(j.button_name, a))
 
+func create_items_menu():
+	if item_list != []:
+		var item_node: BattleUINode = UITree.root.find_next("Item")
+		for i in item_list:
+			item_node.append_next(BattleUIItemNode.new(i, i.item_name + " x" + str(i.quantity), item_node, {}, i.skill.target, null))
+			#var option = BattleUISkillNode.new()
+		for j in item_node.find_all_next():
+			itemmenu.add_child(j.button)
+			var fun = find_skill_func(j.item.skill)
+			var a = Action.new(current_actor, fun, j.item.skill.target, j.item.skill.power, j.item.skill.ailment_type, j.item.skill.buff_type)
+			j.button.pressed.connect(select_target_with_item.bind(j.button_name, a, j.item))
+
+
 func wipe_player_menus():
 	var skill_node: BattleUINode = UITree.root.find_next("Skill")
 	skill_node.remove_all_next()
 	for i in skillmenu.get_children():
+		i.queue_free()
+	var item_node: BattleUINode = UITree.root.find_next("Item")
+	item_node.remove_all_next()
+	for i in itemmenu.get_children():
 		i.queue_free()
 	var attack_node: BattleUINode = UITree.root.find_next("Attack")
 	for i in attack_node.button.pressed.get_connections():
@@ -174,7 +212,6 @@ func select_target(node_name: String, action: Action):
 	UITree.target_selection(node_name)
 	match action.target:
 		Data.BattleTargets.ENEMY:
-			#UITree.target_selection(node_name)
 			default_enemy.grab_focus()
 			for i in enemies:
 				var a: Array[Actor] = [i]
@@ -192,6 +229,10 @@ func select_target(node_name: String, action: Action):
 				single_action(action, [e])
 			end_turn()
 
+func select_target_with_item(node_name: String, action: Action, i: Item):
+	selected_item = i
+	select_target(node_name, action)
+
 func reset_enemy_select():
 	for i in enemies:
 		for j in i.ui_button.pressed.get_connections():
@@ -202,6 +243,12 @@ func reset_enemy_select():
 
 func turn_action(action: Action, targets: Array[Actor]):
 	single_action(action, targets)
+	if selected_item != null:
+		selected_item.quantity -= 1
+		if selected_item.quantity == 0:
+			item_list.erase(selected_item)
+			if item_list.is_empty():
+				UITree.last_item_used(itemmenu)
 	end_turn()
 
 func single_action(action: Action, targets: Array[Actor]):

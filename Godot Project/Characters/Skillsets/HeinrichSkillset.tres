@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Skillset" load_steps=5 format=3 uid="uid://cdbtnk3ccuoem"]
+[gd_resource type="Resource" script_class="Skillset" load_steps=6 format=3 uid="uid://cdbtnk3ccuoem"]
 
 [ext_resource type="Resource" uid="uid://6065rne7pa2q" path="res://Characters/Skills/Heinrich Skills/Bash.tres" id="1_erggv"]
 [ext_resource type="Resource" uid="uid://ewclln84encs" path="res://Characters/Skills/Heinrich Skills/Defend.tres" id="2_4huh5"]
 [ext_resource type="Resource" uid="uid://dm43g31mbc5tl" path="res://Characters/Skills/Heinrich Skills/Guard Order.tres" id="3_x4ye5"]
+[ext_resource type="Resource" uid="uid://cf7hqokgold6x" path="res://Characters/Skills/Heinrich Skills/Light Heal.tres" id="4_tqnxq"]
 [ext_resource type="Script" path="res://Scripts/Resources/Skillset.gd" id="4_xpllr"]
 
 [resource]
 script = ExtResource("4_xpllr")
-SkillList = Array[Resource("res://Scripts/Resources/Skill.gd")]([ExtResource("1_erggv"), ExtResource("2_4huh5"), ExtResource("3_x4ye5")])
+SkillList = Array[Resource("res://Scripts/Resources/Skill.gd")]([ExtResource("1_erggv"), ExtResource("2_4huh5"), ExtResource("3_x4ye5"), ExtResource("4_tqnxq")])
