@@ -29,6 +29,15 @@ func end_of_turn():
 	for a in AilmentManager:
 		a.turn_passed()
 		print("The ailment " + a.status_name + " has " + str(a.turns_remaining) + " turns remaining.")
+	AilmentManager = remove_expired(AilmentManager)
 	for b in BuffManager:
 		b.turn_passed()
 		print("The buff " + b.status_name + " has " + str(b.turns_remaining) + " turns remaining.")
+	BuffManager = remove_expired(BuffManager)
+
+func remove_expired(a: Array[Status]) -> Array[Status]:
+	var n: Array[Status] = []
+	for status in a:
+		if not status.is_expired():
+			n.append(status)
+	return n
