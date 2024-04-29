@@ -3,9 +3,15 @@ extends Node
 # Ailment Resource Files
 
 var Frail = preload("res://Ailments/Frail.tres")
-var Null = preload("res://Ailments/Null.tres")
+var NullAilment = preload("res://Ailments/Null.tres")
 var Rage = preload("res://Ailments/Rage.tres")
 var Sap = preload("res://Ailments/Sap.tres")
+
+# Buff Resource Files
+
+var AttackUp = preload("res://Buffs/AttackUp.tres")
+var DefenseUp = preload("res://Buffs/DefenseUp.tres")
+var NullBuff = preload("res://Buffs/Null.tres")
 
 # Global variables
 
@@ -67,4 +73,13 @@ func find_ailment(type: AilmentTypes) -> AilmentData:
 		AilmentTypes.SAP:
 			return Sap
 		_:
-			return Null
+			return NullAilment
+
+func find_buff(type: BuffTypes) -> BuffData:
+	match type:
+		BuffTypes.ATTACK_UP:
+			return AttackUp
+		BuffTypes.DEFENSE_UP:
+			return DefenseUp
+		_:
+			return NullBuff

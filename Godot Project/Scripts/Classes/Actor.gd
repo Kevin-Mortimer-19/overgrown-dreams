@@ -11,14 +11,24 @@ var sm: StatusManager
 
 signal death
 
+var defending: bool = false
+
 func _init(src_stats: Stats = Stats.new(), src_button: Button = Button.new()):
 	stats = src_stats
 	ui_button = src_button
 	sm = StatusManager.new()
 	death.connect(func():print(stats.actor_name + " is dead!"))
 
+func start_of_turn():
+	if defending:
+		defending = false
+
 func take_damage(val):
-	stats.cur_hp -= val
+	if defending:
+		stats.cur_hp -= (val/2)
+		defending = false
+	else:
+		stats.cur_hp -= val
 	if stats.cur_hp <= 0:
 		death.emit()
 
@@ -36,3 +46,6 @@ func add_status(s: StatusData):
 
 func status_check():
 	sm.end_of_turn()
+
+func defend():
+	defending = true

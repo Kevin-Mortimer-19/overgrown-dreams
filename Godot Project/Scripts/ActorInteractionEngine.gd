@@ -19,7 +19,9 @@ static func heal(doctor: Actor, patients: Array[Actor], power: Data.SkillPower, 
 	patients[0].heal(healing)
 
 static func buff(helper: Actor, targets: Array[Actor], power: Data.SkillPower, b_type = Data.BuffTypes.NONE, _a_type = Data.AilmentTypes.NONE):
-	print(helper.stats.actor_name + " used a(n) " + Data.BuffTypes.keys()[b_type] + " skill on target " + targets[0].stats.actor_name + "!")
+	for a in targets:
+		a.add_status(Data.find_buff(b_type))
+		print(helper.stats.actor_name + " used a(n) " + Data.BuffTypes.keys()[b_type] + " skill on target " + targets[0].stats.actor_name + "!")
 
 static func shield(defender: Actor, allies: Array[Actor], power: Data.SkillPower, _b_type = Data.BuffTypes.NONE, _a_type = Data.AilmentTypes.NONE):
 	pass

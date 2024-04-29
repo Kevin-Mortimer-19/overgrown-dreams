@@ -8,9 +8,9 @@ var expired: bool
 
 var positive: bool
 
-func _init(d: StatusData, p: bool):
+func _init(d: StatusData, p: bool, t: int = 3):
 	status_name = d.status_name
-	turns_remaining = 3
+	turns_remaining = t
 	expired = false
 	positive = p
 

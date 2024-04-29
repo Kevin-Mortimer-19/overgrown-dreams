@@ -107,8 +107,10 @@ func start_new_turn():
 		print("The " + current_actor.stats.actor_name + " is dancing crazy!")
 		end_turn()
 	elif current_actor is HeroActor:
+		current_actor.start_of_turn()
 		var attack_action = Action.new(current_actor, interaction.attack, Data.BattleTargets.ENEMY)
 		UITree.root.find_next("Attack").button.pressed.connect(select_target.bind("Attack", attack_action))
+		UITree.root.find_next("Defend").button.pressed.connect(actor_defend.bind(current_actor))
 		player_control = true
 		create_skills_menu(current_actor)
 		open_menu()
@@ -163,6 +165,9 @@ func wipe_player_menus():
 	var attack_node: BattleUINode = UITree.root.find_next("Attack")
 	for i in attack_node.button.pressed.get_connections():
 		attack_node.button.pressed.disconnect(i["callable"])
+	var defend_node: BattleUINode = UITree.root.find_next("Defend")
+	for i in defend_node.button.pressed.get_connections():
+		defend_node.button.pressed.disconnect(i["callable"])
 
 
 func select_target(node_name: String, action: Action):
@@ -202,6 +207,9 @@ func turn_action(action: Action, targets: Array[Actor]):
 func single_action(action: Action, targets: Array[Actor]):
 	action.action.call(action.initiator, targets, action.skillpower, action.buff, action.ailment)
 
+func actor_defend(a: Actor):
+	a.defend()
+	end_turn()
 
 func find_skill_func(s: Skill) -> Callable:
 	match s.effect:

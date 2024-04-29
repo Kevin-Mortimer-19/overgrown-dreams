@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_l12j3")
 type = 1
-status_name = "Energized"
+status_name = "Attack Up"
