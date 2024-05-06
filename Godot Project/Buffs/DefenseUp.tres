@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="BuffData" load_steps=2 format=3 uid="uid://dafnosx0srp7d"]
-
-[ext_resource type="Script" path="res://Scripts/Resources/BuffData.gd" id="1_hxr4d"]
-
-[resource]
-script = ExtResource("1_hxr4d")
-type = 1
-status_name = "Fortified"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BuffData" load_steps=2 format=3 uid="uid://dsqfbgofa2xkj"]
+
+[ext_resource type="Script" path="res://Battle/Scripts/Resources/BuffData.gd" id="1_3adn0"]
+
+[resource]
+script = ExtResource("1_3adn0")
+defend = false
+type = 1
+status_name = "Null"

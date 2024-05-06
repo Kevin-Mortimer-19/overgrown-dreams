@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://i5ro401dw1mf"]
+
+[ext_resource type="Script" path="res://Battle/Scripts/Resources/Stats.gd" id="1_yjwwg"]
+
+[resource]
+script = ExtResource("1_yjwwg")
+actor_name = "Heinrich"
+attack = 11
+defense = 5
+speed = 1
+spirit = 5
+luck = 1
+cur_hp = 35
+max_hp = 35
+cur_mp = 15
+max_mp = 15

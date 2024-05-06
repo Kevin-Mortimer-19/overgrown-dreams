@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://br5akr3uvdb00"]
+
+[ext_resource type="Script" path="res://Battle/Scripts/Resources/Item.gd" id="1_rod4u"]
+[ext_resource type="Resource" uid="uid://cf7hqokgold6x" path="res://Battle/Characters/Skills/Heinrich Skills/Light Heal.tres" id="2_gus5i"]
+
+[resource]
+script = ExtResource("1_rod4u")
+skill = ExtResource("2_gus5i")
+item_name = "Salve"
+quantity = 3

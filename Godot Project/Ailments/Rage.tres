@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="AilmentData" load_steps=2 format=3 uid="uid://rayid6p2ctm8"]
-
-[ext_resource type="Script" path="res://Scripts/Resources/AilmentData.gd" id="1_kj4fn"]
-
-[resource]
-script = ExtResource("1_kj4fn")
-type = 2
-status_name = "Rage"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skillset" load_steps=5 format=3 uid="uid://cfbacxcs83fm8"]
+
+[ext_resource type="Resource" uid="uid://b3wn0sgv482no" path="res://Battle/Characters/Skills/Medea Skills/Sap Powder.tres" id="1_brqsd"]
+[ext_resource type="Resource" uid="uid://bh7iw2r7h8mqx" path="res://Battle/Characters/Skills/Medea Skills/Rage Powder.tres" id="2_1t72q"]
+[ext_resource type="Resource" uid="uid://cfprf0gjd6er6" path="res://Battle/Characters/Skills/Medea Skills/Frail Powder.tres" id="3_5i624"]
+[ext_resource type="Script" path="res://Battle/Scripts/Resources/Skillset.gd" id="4_dxgon"]
+
+[resource]
+script = ExtResource("4_dxgon")
+SkillList = Array[Resource("res://Battle/Scripts/Resources/Skill.gd")]([ExtResource("1_brqsd"), ExtResource("2_1t72q"), ExtResource("3_5i624")])

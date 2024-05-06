@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BattleUINode" load_steps=2 format=3 uid="uid://cpol2owv3mrx0"]
+
+[ext_resource type="Script" path="res://Battle/Scripts/Battle UI Tree/BattleUINode.gd" id="1_4e10q"]
+
+[resource]
+script = ExtResource("1_4e10q")
+target = 0

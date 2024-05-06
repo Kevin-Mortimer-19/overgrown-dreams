@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://bymxngevoioy7"]
+
+[ext_resource type="Script" path="res://Battle/Scripts/Resources/Stats.gd" id="1_lwasa"]
+
+[resource]
+script = ExtResource("1_lwasa")
+actor_name = "Faster Enemy"
+attack = 8
+defense = 5
+speed = 4
+spirit = 0
+luck = 0
+cur_hp = 40
+max_hp = 40
+cur_mp = 25
+max_mp = 25

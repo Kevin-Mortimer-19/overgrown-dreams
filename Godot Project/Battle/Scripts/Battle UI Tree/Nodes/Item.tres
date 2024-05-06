@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BattleUITreeNode" load_steps=2 format=3 uid="uid://h26ldxd8nuw3"]
+
+[ext_resource type="Script" path="res://Battle/Scripts/Battle UI Tree/BattleUINode.gd" id="1_gjnrn"]
+
+[resource]
+script = ExtResource("1_gjnrn")
+next_nodes = Array[ExtResource("1_gjnrn")]([])
+target = 0
