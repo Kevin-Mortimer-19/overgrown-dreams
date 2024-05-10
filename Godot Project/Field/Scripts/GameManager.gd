@@ -3,7 +3,7 @@ extends Node2D
 @onready var player = get_node("Player/CharacterBody2D")
 @onready var pause_menu = get_node("PauseMenu")
 
-#var Game_Data = load("res://Field/Resources/GameData.tres")
+var Game_Data: GameData = load("res://Field/Resources/GameData.tres")
 
 var paused: bool
 
@@ -26,5 +26,4 @@ func pause_check():
 			pause_menu.visible = true
 
 func save():
-	pass
-	#Game_Data.save()
+	Game_Data.save_game()
