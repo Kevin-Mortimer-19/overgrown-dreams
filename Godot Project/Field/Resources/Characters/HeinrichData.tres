@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://cfeihtgooai56"]
+
+[ext_resource type="Script" path="res://Field/Data/CharacterData.gd" id="1_s2fuv"]
+[ext_resource type="Resource" uid="uid://i5ro401dw1mf" path="res://Battle/Characters/Stats/Heinrich.tres" id="2_ibplg"]
+
+[resource]
+script = ExtResource("1_s2fuv")
+stats = ExtResource("2_ibplg")

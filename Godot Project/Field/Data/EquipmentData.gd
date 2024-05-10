@@ -1,0 +1,1 @@
+class_name EquipmentData extends Resource

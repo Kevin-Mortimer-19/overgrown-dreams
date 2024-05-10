@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://c68svo1mcjfj"]
+
+[ext_resource type="Script" path="res://Field/Data/CharacterData.gd" id="1_j46km"]
+[ext_resource type="Resource" uid="uid://x08e6rxv3log" path="res://Battle/Characters/Stats/Mars.tres" id="2_dob6u"]
+
+[resource]
+script = ExtResource("1_j46km")
+stats = ExtResource("2_dob6u")

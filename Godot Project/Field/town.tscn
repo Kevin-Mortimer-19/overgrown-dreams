@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b23a4ai5l3s6j"]
+[gd_scene load_steps=7 format=3 uid="uid://b23a4ai5l3s6j"]
 
+[ext_resource type="Script" path="res://Field/Scripts/GameManager.gd" id="1_2g3l5"]
 [ext_resource type="TileSet" uid="uid://b6hbhhntaeg0s" path="res://Field/town.tres" id="1_v51l1"]
 [ext_resource type="Script" path="res://Field/Scripts/FieldPlayer.gd" id="2_2d6io"]
 [ext_resource type="Texture2D" uid="uid://cltg0avp5f7e5" path="res://icon.svg" id="2_p7ij0"]
+[ext_resource type="Script" path="res://Field/Scripts/PauseMenu.gd" id="5_2h7a0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0vtb"]
 
 [node name="Town" type="Node2D"]
+script = ExtResource("1_2g3l5")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_v51l1")
@@ -25,3 +28,27 @@ shape = SubResource("RectangleShape2D_l0vtb")
 [node name="Sprite2D" type="Sprite2D" parent="Player/CharacterBody2D"]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_p7ij0")
+
+[node name="PauseMenu" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 68.0
+offset_top = 68.0
+offset_right = 108.0
+offset_bottom = 108.0
+script = ExtResource("5_2h7a0")
+
+[node name="Gear Button" type="Button" parent="PauseMenu"]
+layout_mode = 2
+text = "Gear"
+
+[node name="Item Button" type="Button" parent="PauseMenu"]
+layout_mode = 2
+text = "Item"
+
+[node name="Save Button" type="Button" parent="PauseMenu"]
+layout_mode = 2
+text = "Save"
+
+[node name="Load Button" type="Button" parent="PauseMenu"]
+layout_mode = 2
+text = "Load"

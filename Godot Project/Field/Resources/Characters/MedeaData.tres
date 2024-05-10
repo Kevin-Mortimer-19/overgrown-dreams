@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://d056j204t81mh"]
+
+[ext_resource type="Script" path="res://Field/Data/CharacterData.gd" id="1_kcvjx"]
+[ext_resource type="Resource" uid="uid://d27o0yobkhv2k" path="res://Battle/Characters/Stats/Medea.tres" id="2_y8i3k"]
+
+[resource]
+script = ExtResource("1_kcvjx")
+stats = ExtResource("2_y8i3k")

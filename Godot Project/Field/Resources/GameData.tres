@@ -1,0 +1,94 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://dja7nht7g75w8"]
+
+[sub_resource type="GDScript" id="GDScript_q75mg"]
+script/source = "class_name CharacterData extends Resource
+
+@export var stats: Stats
+"
+
+[sub_resource type="GDScript" id="GDScript_hjk5c"]
+script/source = "class_name Stats extends Resource
+
+@export var actor_name: String
+
+@export var attack: int
+@export var defense: int
+@export var speed: int
+@export var spirit: int
+@export var luck: int
+@export var cur_hp: int
+@export var max_hp: int
+@export var cur_mp: int
+@export var max_mp: int
+"
+
+[sub_resource type="Resource" id="Resource_666px"]
+script = SubResource("GDScript_hjk5c")
+actor_name = "Heinrich"
+attack = 11
+defense = 5
+speed = 1
+spirit = 5
+luck = 1
+cur_hp = 35
+max_hp = 35
+cur_mp = 15
+max_mp = 15
+
+[sub_resource type="Resource" id="Resource_yfww0"]
+script = SubResource("GDScript_q75mg")
+stats = SubResource("Resource_666px")
+
+[sub_resource type="Resource" id="Resource_4b10n"]
+script = SubResource("GDScript_hjk5c")
+actor_name = "Mars"
+attack = 15
+defense = 3
+speed = 3
+spirit = 1
+luck = 3
+cur_hp = 30
+max_hp = 30
+cur_mp = 10
+max_mp = 10
+
+[sub_resource type="Resource" id="Resource_coedo"]
+script = SubResource("GDScript_q75mg")
+stats = SubResource("Resource_4b10n")
+
+[sub_resource type="Resource" id="Resource_s28ew"]
+script = SubResource("GDScript_hjk5c")
+actor_name = "Medea"
+attack = 7
+defense = 1
+speed = 5
+spirit = 3
+luck = 5
+cur_hp = 25
+max_hp = 25
+cur_mp = 20
+max_mp = 20
+
+[sub_resource type="Resource" id="Resource_ru8b8"]
+script = SubResource("GDScript_q75mg")
+stats = SubResource("Resource_s28ew")
+
+[sub_resource type="GDScript" id="GDScript_xbq88"]
+script/source = "class_name GameData extends Resource
+
+@export var MarsData: CharacterData
+@export var MedeaData: CharacterData
+@export var HeinrichData: CharacterData
+
+@export var file_name: String
+
+func save():
+	var s = ResourceSaver.save(self, file_name, ResourceSaver.FLAG_BUNDLE_RESOURCES)
+"
+
+[resource]
+script = SubResource("GDScript_xbq88")
+MarsData = SubResource("Resource_coedo")
+MedeaData = SubResource("Resource_ru8b8")
+HeinrichData = SubResource("Resource_yfww0")
+file_name = ""

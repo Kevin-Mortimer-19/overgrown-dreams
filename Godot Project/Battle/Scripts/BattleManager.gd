@@ -28,13 +28,13 @@ var turn_order
 
 var current_actor: Actor
 
-var item_list: Array[Item]
+var item_list: Array[BattleItem]
 # Temporary items to ensure the battle UI works properly
 var salve = preload("res://Battle/Items/Health Potion.tres")
 var numb_powder = preload("res://Battle/Items/Numbing Powder.tres")
 
 # Temporary variable to store the currently selected item, will be replaced after rewriting target select func
-var selected_item: Item
+var selected_item: BattleItem
 
 
 @onready var battle_menu = $BattleMainMenu
@@ -229,7 +229,7 @@ func select_target(node_name: String, action: Action):
 				single_action(action, [e])
 			end_turn()
 
-func select_target_with_item(node_name: String, action: Action, i: Item):
+func select_target_with_item(node_name: String, action: Action, i: BattleItem):
 	selected_item = i
 	select_target(node_name, action)
 
