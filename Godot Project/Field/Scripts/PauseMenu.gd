@@ -11,10 +11,15 @@ signal save
 signal load
 
 func _ready():
+	gear_b.pressed.connect(open_gear_menu)
 	save_b.pressed.connect(parent_save)
+	
 
 func set_parent(o: Object):
 	parent = o
 
 func parent_save():
 	parent.save()
+
+func open_gear_menu():
+	parent.toggle_gear_menu()

@@ -64,6 +64,12 @@ enum AilmentTypes {
 	SAP = 3,
 }
 
+enum GearSlots {
+	HEAD = 0,
+	CHEST = 1,
+	ARMS = 2,
+}
+
 func find_ailment(type: AilmentTypes) -> AilmentData:
 	match type:
 		AilmentTypes.FRAIL:

@@ -5,7 +5,10 @@ extends Node2D
 
 var Game_Data: GameData = load("res://Field/Resources/GameData.tres")
 
+@onready var GearMenu = $GearMenu2
+
 var paused: bool
+var gear_m_open: bool
 
 func _ready():
 	pause_menu.set_parent(self)
@@ -27,3 +30,11 @@ func pause_check():
 
 func save():
 	Game_Data.save_game()
+
+func toggle_gear_menu():
+	if gear_m_open:
+		GearMenu.visible = false
+		gear_m_open = false
+	else:
+		GearMenu.visible = true
+		gear_m_open = true
