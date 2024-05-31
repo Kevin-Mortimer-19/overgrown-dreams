@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b23a4ai5l3s6j"]
+[gd_scene load_steps=18 format=3 uid="uid://b23a4ai5l3s6j"]
 
 [ext_resource type="Script" path="res://Field/Scripts/GameManager.gd" id="1_2g3l5"]
 [ext_resource type="TileSet" uid="uid://b6hbhhntaeg0s" path="res://Field/town.tres" id="1_v51l1"]
@@ -13,6 +13,9 @@
 [ext_resource type="Resource" uid="uid://c200gvbor80yw" path="res://Field/Gear/Resource Files/Red Hat.tres" id="11_u8cjw"]
 [ext_resource type="Resource" uid="uid://c47dbx8fg0jmu" path="res://Field/Gear/Resource Files/Red Shirt.tres" id="12_7ikp0"]
 [ext_resource type="PackedScene" uid="uid://dqeu7enyjkwie" path="res://Field/Menus/gear_sub_menu.tscn" id="13_vriui"]
+[ext_resource type="Resource" uid="uid://cfeihtgooai56" path="res://Field/Resources/Characters/HeinrichData.tres" id="14_imsjs"]
+[ext_resource type="Resource" uid="uid://c68svo1mcjfj" path="res://Field/Resources/Characters/MarsData.tres" id="15_blfay"]
+[ext_resource type="Resource" uid="uid://d056j204t81mh" path="res://Field/Resources/Characters/MedeaData.tres" id="16_j0j4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0vtb"]
 
@@ -143,37 +146,23 @@ offset_top = 122.0
 offset_right = 687.0
 offset_bottom = 349.0
 tab_alignment = 1
-current_tab = 1
 script = ExtResource("6_k44fs")
 test = ExtResource("7_dnp4x")
 gear_list = Array[Resource("res://Field/Gear/Equipment.gd")]([ExtResource("7_dnp4x"), ExtResource("8_dt25t"), ExtResource("9_tbe03"), ExtResource("10_pii3c"), ExtResource("11_u8cjw"), ExtResource("12_7ikp0")])
 
-[node name="Mars" type="HBoxContainer" parent="GearMenu2"]
-visible = false
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GearMenu2/Mars"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GearMenu2/Mars/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GearMenu2/Mars/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Head"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="GearMenu2/Mars/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="GearMenu2/Mars/VBoxContainer"]
-layout_mode = 2
-
-[node name="Medea" type="HBoxContainer" parent="GearMenu2"]
-layout_mode = 2
-
 [node name="Heinrich" parent="GearMenu2" instance=ExtResource("13_vriui")]
+layout_mode = 2
+character = ExtResource("14_imsjs")
+
+[node name="Mars" parent="GearMenu2" instance=ExtResource("13_vriui")]
 visible = false
 layout_mode = 2
+character = ExtResource("15_blfay")
+
+[node name="Medea" parent="GearMenu2" instance=ExtResource("13_vriui")]
+visible = false
+layout_mode = 2
+character = ExtResource("16_j0j4g")
 
 [node name="ItemList" type="ItemList" parent="."]
 visible = false
