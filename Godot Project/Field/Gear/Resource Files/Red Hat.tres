@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=2 format=3 uid="uid://c200gvbor80yw"]
+
+[ext_resource type="Script" path="res://Field/Gear/Equipment.gd" id="1_ybdai"]
+
+[resource]
+script = ExtResource("1_ybdai")
+equipment_name = "Red Hat"
+equip_type = 0
+modifier = 2

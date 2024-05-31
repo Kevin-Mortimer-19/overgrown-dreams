@@ -12,11 +12,11 @@ class Gear:
 
 
 
-var leather_chest = Equipment.new("Leather Chestpiece", Data.GearSlots.CHEST)
-var iron_chest = Equipment.new("Iron Chestpiece", Data.GearSlots.CHEST)
-
-var leather_arms = Equipment.new("Leather Chestpiece", Data.GearSlots.CHEST)
-var iron_arms = Equipment.new("Iron Chestpiece", Data.GearSlots.CHEST)
-
-var leather_pants = Equipment.new("Leather Chestpiece", Data.GearSlots.CHEST)
-var iron_pants = Equipment.new("Iron Chestpiece", Data.GearSlots.CHEST)
+#var leather_chest = Equipment.new("Leather Chestpiece", Data.GearSlots.CHEST, 1)
+#var iron_chest = Equipment.new("Iron Chestpiece", Data.GearSlots.CHEST, 2)
+#
+#var leather_arms = Equipment.new("Leather Chestpiece", Data.GearSlots.CHEST, 1)
+#var iron_arms = Equipment.new("Iron Chestpiece", Data.GearSlots.CHEST, 2)
+#
+#var leather_pants = Equipment.new("Leather Chestpiece", Data.GearSlots.CHEST, 1)
+#var iron_pants = Equipment.new("Iron Chestpiece", Data.GearSlots.CHEST, 2)

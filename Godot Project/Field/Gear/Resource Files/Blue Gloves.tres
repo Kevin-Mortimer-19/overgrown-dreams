@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=2 format=3 uid="uid://dlsni24p8vx2a"]
+
+[ext_resource type="Script" path="res://Field/Gear/Equipment.gd" id="1_nv16c"]
+
+[resource]
+script = ExtResource("1_nv16c")
+equipment_name = "Blue Gloves"
+equip_type = 2
+modifier = 1

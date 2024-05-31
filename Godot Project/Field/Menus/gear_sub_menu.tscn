@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqeu7enyjkwie"]
+
+[ext_resource type="Script" path="res://Field/Scripts/GearForCharacter.gd" id="1_mw88k"]
+
+[node name="GearSubMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mw88k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -52.0
+offset_right = 22.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Helmet" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/Helmet"]
+layout_mode = 2
+text = "Head"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Helmet"]
+layout_mode = 2
+
+[node name="Shirt" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/Shirt"]
+layout_mode = 2
+text = "Shirt"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Shirt"]
+layout_mode = 2
+
+[node name="Arms" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/Arms"]
+layout_mode = 2
+text = "Arms"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Arms"]
+layout_mode = 2
+
+[node name="Legs" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/Legs"]
+layout_mode = 2
+text = "Legs"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Legs"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Red Hat"
+popup/item_0/id = 0
+popup/item_1/text = "Green Hat"
+popup/item_1/id = 1
+popup/item_2/text = "Blue Hat"
+popup/item_2/id = 2

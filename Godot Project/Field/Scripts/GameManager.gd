@@ -18,9 +18,11 @@ func _physics_process(_delta):
 	pause_check()
 
 func pause_check():
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("pause"):
 		if paused:
 			paused = false
+			if gear_m_open:
+				toggle_gear_menu()
 			player.unlock_movement()
 			pause_menu.visible = false
 		else:
