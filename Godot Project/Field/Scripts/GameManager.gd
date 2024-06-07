@@ -13,6 +13,7 @@ var gear_m_open: bool
 func _ready():
 	pause_menu.set_parent(self)
 	paused = false
+	initialize_test_gear()
 
 func _physics_process(_delta):
 	pause_check()
@@ -40,3 +41,21 @@ func toggle_gear_menu():
 	else:
 		GearMenu.visible = true
 		gear_m_open = true
+
+
+func initialize_test_gear():
+	var res1 = load("res://Field/Gear/Resource Files/Blue Gloves.tres")
+	var res2 = load("res://Field/Gear/Resource Files/Blue Hat.tres")
+	var res3 = load("res://Field/Gear/Resource Files/Blue Shirt.tres")
+	var res4 = load("res://Field/Gear/Resource Files/Red Gloves.tres")
+	var res5 = load("res://Field/Gear/Resource Files/Red Hat.tres")
+	var res6 = load("res://Field/Gear/Resource Files/Red Shirt.tres")
+	
+	GearMenu.add_gear(res1)
+	GearMenu.add_gear(res2)
+	GearMenu.add_gear(res3)
+	GearMenu.add_gear(res4)
+	GearMenu.add_gear(res5)
+	GearMenu.add_gear(res6)
+	
+	GearMenu.open_menu(GearMenu.current_tab)

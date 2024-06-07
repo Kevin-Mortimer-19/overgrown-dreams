@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b23a4ai5l3s6j"]
+[gd_scene load_steps=13 format=3 uid="uid://b23a4ai5l3s6j"]
 
 [ext_resource type="Script" path="res://Field/Scripts/GameManager.gd" id="1_2g3l5"]
 [ext_resource type="TileSet" uid="uid://b6hbhhntaeg0s" path="res://Field/town.tres" id="1_v51l1"]
@@ -7,11 +7,6 @@
 [ext_resource type="Script" path="res://Field/Scripts/PauseMenu.gd" id="5_2h7a0"]
 [ext_resource type="Script" path="res://Field/Scripts/GearMenu.gd" id="6_k44fs"]
 [ext_resource type="Resource" uid="uid://dlsni24p8vx2a" path="res://Field/Gear/Resource Files/Blue Gloves.tres" id="7_dnp4x"]
-[ext_resource type="Resource" uid="uid://kde3waeyghr7" path="res://Field/Gear/Resource Files/Blue Hat.tres" id="8_dt25t"]
-[ext_resource type="Resource" uid="uid://bjdtlfoea7rq2" path="res://Field/Gear/Resource Files/Blue Shirt.tres" id="9_tbe03"]
-[ext_resource type="Resource" uid="uid://b5kdmykescra0" path="res://Field/Gear/Resource Files/Red Gloves.tres" id="10_pii3c"]
-[ext_resource type="Resource" uid="uid://c200gvbor80yw" path="res://Field/Gear/Resource Files/Red Hat.tres" id="11_u8cjw"]
-[ext_resource type="Resource" uid="uid://c47dbx8fg0jmu" path="res://Field/Gear/Resource Files/Red Shirt.tres" id="12_7ikp0"]
 [ext_resource type="PackedScene" uid="uid://dqeu7enyjkwie" path="res://Field/Menus/gear_sub_menu.tscn" id="13_vriui"]
 [ext_resource type="Resource" uid="uid://cfeihtgooai56" path="res://Field/Resources/Characters/HeinrichData.tres" id="14_imsjs"]
 [ext_resource type="Resource" uid="uid://c68svo1mcjfj" path="res://Field/Resources/Characters/MarsData.tres" id="15_blfay"]
@@ -148,7 +143,6 @@ offset_bottom = 349.0
 tab_alignment = 1
 script = ExtResource("6_k44fs")
 test = ExtResource("7_dnp4x")
-gear_list = Array[Resource("res://Field/Gear/Equipment.gd")]([ExtResource("7_dnp4x"), ExtResource("8_dt25t"), ExtResource("9_tbe03"), ExtResource("10_pii3c"), ExtResource("11_u8cjw"), ExtResource("12_7ikp0")])
 
 [node name="Heinrich" parent="GearMenu2" instance=ExtResource("13_vriui")]
 layout_mode = 2

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=2 format=3 uid="uid://b5gffkx7ifegc"]
+
+[ext_resource type="Script" path="res://Field/Gear/Equipment.gd" id="1_uti3m"]
+
+[resource]
+script = ExtResource("1_uti3m")
+equipment_name = "None"
+equip_type = 1
+modifier = 0
