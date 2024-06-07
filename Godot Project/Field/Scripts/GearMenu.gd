@@ -31,18 +31,18 @@ func _ready():
 	open_menu(current_tab)
 
 func open_menu(tab: int):
-	var current_tab = find_current_tab(tab)
-	current_tab.wipe_menus()
+	var cur_tab = find_current_tab(tab)
+	cur_tab.wipe_menus()
 	for e in gear_list:
 		#print(e.equipment_name)
 		match e.item.equip_type:
 			Data.GearSlots.HEAD:
-				current_tab.add_to_head_list(e.item)
+				cur_tab.add_to_head_list(e.item)
 			Data.GearSlots.ARMS:
-				current_tab.add_to_arm_list(e.item)
+				cur_tab.add_to_arm_list(e.item)
 			Data.GearSlots.CHEST:
-				current_tab.add_to_chest_list(e.item)
-	current_tab.generate_menus()
+				cur_tab.add_to_chest_list(e.item)
+	cur_tab.generate_menus()
 
 func find_current_tab(tab: int):
 	match tab:
