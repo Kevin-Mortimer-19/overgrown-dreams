@@ -6,17 +6,26 @@ extends Node2D
 var Game_Data: GameData = load("res://Field/Resources/GameData.tres")
 
 @onready var GearMenu = $GearMenu2
+@onready var DialogueBox = $DialogueBox
 
 var paused: bool
 var gear_m_open: bool
+var dialogue_open: bool
 
 func _ready():
 	pause_menu.set_parent(self)
 	paused = false
+	dialogue_open = false
 	initialize_test_gear()
 
 func _physics_process(_delta):
+	talk_check()
 	pause_check()
+
+func talk_check():
+	if dialogue_open:
+		if Input.is_action_just_pressed("ui_accept"):
+			close_dialogue()
 
 func pause_check():
 	if Input.is_action_just_pressed("pause"):
@@ -26,7 +35,7 @@ func pause_check():
 				toggle_gear_menu()
 			player.unlock_movement()
 			pause_menu.visible = false
-		else:
+		elif not dialogue_open:
 			paused = true
 			player.lock_movement()
 			pause_menu.visible = true
@@ -41,6 +50,18 @@ func toggle_gear_menu():
 	else:
 		GearMenu.visible = true
 		gear_m_open = true
+
+func open_dialogue(text: String):
+	DialogueBox.visible = true
+	DialogueBox.get_child(0).get_child(0).text = text
+	dialogue_open = true
+	player.lock_movement()
+
+func close_dialogue():
+	DialogueBox.visible = false
+	dialogue_open = false
+	player.unlock_movement()
+
 
 
 func initialize_test_gear():
