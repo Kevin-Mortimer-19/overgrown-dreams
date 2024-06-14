@@ -7,3 +7,4 @@ script = ExtResource("1_30pry")
 equipment_name = "Red Gloves"
 equip_type = 2
 modifier = 2
+cost = 120

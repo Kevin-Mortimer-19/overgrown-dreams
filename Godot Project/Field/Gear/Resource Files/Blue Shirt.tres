@@ -7,3 +7,4 @@ script = ExtResource("1_1ok4j")
 equipment_name = "Blue Shirt"
 equip_type = 1
 modifier = 1
+cost = 60

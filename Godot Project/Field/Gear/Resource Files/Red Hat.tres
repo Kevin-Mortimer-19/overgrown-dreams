@@ -7,3 +7,4 @@ script = ExtResource("1_ybdai")
 equipment_name = "Red Hat"
 equip_type = 0
 modifier = 2
+cost = 120

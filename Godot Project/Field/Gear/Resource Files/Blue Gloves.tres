@@ -7,3 +7,4 @@ script = ExtResource("1_nv16c")
 equipment_name = "Blue Gloves"
 equip_type = 2
 modifier = 1
+cost = 60

@@ -4,6 +4,8 @@ var movement_speed = 100
 
 var movement_locked: bool
 
+var gold: int = 500
+
 func _ready():
 	movement_locked = false
 
@@ -25,3 +27,11 @@ func unlock_movement():
 
 func unlock_movement_real():
 	movement_locked = false
+
+func spend(value: int) -> bool:
+	var g = gold - value
+	if g >= 0:
+		gold = g
+		return true
+	else:
+		return false

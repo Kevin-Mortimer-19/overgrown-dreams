@@ -7,3 +7,4 @@ script = ExtResource("1_oc5dv")
 equipment_name = "Blue Hat"
 equip_type = 0
 modifier = 1
+cost = 60

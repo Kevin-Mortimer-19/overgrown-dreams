@@ -7,3 +7,4 @@ script = ExtResource("1_4dsnp")
 equipment_name = "Red Shirt"
 equip_type = 1
 modifier = 2
+cost = 120
