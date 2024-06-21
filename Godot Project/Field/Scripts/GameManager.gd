@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player = get_node("Player/CharacterBody2D")
+@onready var player = get_node("Player")
 @onready var pause_menu = get_node("PauseMenu")
 
 var Game_Data: GameData = load("res://Field/Resources/GameData.tres")
