@@ -29,30 +29,32 @@ func talk_check():
 			close_dialogue()
 
 func pause_check():
-	if Input.is_action_just_pressed("pause"):
-		if paused:
-			paused = false
-			if gear_m_open:
-				toggle_gear_menu()
-			player.unlock_movement()
-			pause_menu.visible = false
-		elif not dialogue_open:
-			paused = true
-			player.lock_movement()
-			pause_menu.visible = true
+	pass
+	#if Input.is_action_just_pressed("pause"):
+		#if paused:
+			#paused = false
+			#if gear_m_open:
+				#toggle_gear_menu()
+			#player.unlock_movement()
+			#pause_menu.visible = false
+		#elif not dialogue_open:
+			#paused = true
+			#player.lock_movement()
+			#pause_menu.visible = true
 
 func save():
 	Game_Data.save_game()
 
 func toggle_gear_menu():
-	if gear_m_open:
-		GearMenu.visible = false
-		gear_m_open = false
-	else:
-		GearMenu.open_menu(GearMenu.current_tab)
-		GearMenu.visible = true
-		gear_m_open = true
-		
+	#if gear_m_open:
+		#GearMenu.visible = false
+		#gear_m_open = false
+	#else:
+		#GearMenu.open_menu(GearMenu.current_tab)
+		#GearMenu.visible = true
+		#gear_m_open = true
+	get_node("Player/StateMachine/Menu").open_submenu(GearMenu)
+
 func toggle_shop():
 	if shop.visible == true:
 		shop.visible = false

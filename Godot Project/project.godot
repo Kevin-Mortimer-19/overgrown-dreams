@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Data="*res://Battle/Scripts/Data.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [editor_plugins]
 
