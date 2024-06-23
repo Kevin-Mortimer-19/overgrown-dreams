@@ -6,6 +6,8 @@ var movement_locked: bool
 
 var gold: int = 500
 
+signal enter_dialogue(body: StaticBody2D)
+
 func _ready():
 	movement_locked = false
 
@@ -21,7 +23,7 @@ func move():
 		if c:
 			var c2 = get_last_slide_collision()
 			if c2.get_collider().is_in_group("NPC") and Input.is_action_just_pressed("ui_accept"):
-				c2.get_collider().talk()
+				enter_dialogue.emit(c2.get_collider())
 
 func lock_movement():
 	movement_locked = true

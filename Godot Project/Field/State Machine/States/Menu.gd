@@ -32,9 +32,10 @@ func open_submenu(n: Control):
 	n.visible = true
 
 func close_submenu():
-	submenu_open = false
-	submenu.visible = false
-	submenu = null
+	if submenu != null:
+		submenu_open = false
+		submenu.visible = false
+		submenu = null
 
 func enter(_msg = {}):
 	player.get_parent().pause_menu.visible = true
