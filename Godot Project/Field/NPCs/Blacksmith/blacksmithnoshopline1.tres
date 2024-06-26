@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SingleDialogue" load_steps=2 format=3 uid="uid://bd7qlh2dmu321"]
+
+[ext_resource type="Script" path="res://Field/Dialogue/SingleDialogue.gd" id="1_ic3y0"]
+
+[resource]
+script = ExtResource("1_ic3y0")
+text = "Harrumph. Gawk all you want, but don't touch anything you can't afford to break. Gahaha!"

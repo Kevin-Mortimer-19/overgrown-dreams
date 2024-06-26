@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://cefd7n080pot8"]
+
+[ext_resource type="Script" path="res://Field/Scripts/Shop.gd" id="1_2ec75"]
+[ext_resource type="PackedScene" uid="uid://c00q4x58440vj" path="res://Field/Menus/shop_item.tscn" id="2_34kaa"]
+[ext_resource type="Resource" uid="uid://dlsni24p8vx2a" path="res://Field/Gear/Resource Files/Blue Gloves.tres" id="3_06ff3"]
+[ext_resource type="Resource" uid="uid://kde3waeyghr7" path="res://Field/Gear/Resource Files/Blue Hat.tres" id="4_7016u"]
+[ext_resource type="Resource" uid="uid://bjdtlfoea7rq2" path="res://Field/Gear/Resource Files/Blue Shirt.tres" id="5_p52d4"]
+[ext_resource type="Resource" uid="uid://b5kdmykescra0" path="res://Field/Gear/Resource Files/Red Gloves.tres" id="6_1jb5t"]
+[ext_resource type="Resource" uid="uid://c200gvbor80yw" path="res://Field/Gear/Resource Files/Red Hat.tres" id="7_gqcmm"]
+[ext_resource type="Resource" uid="uid://c47dbx8fg0jmu" path="res://Field/Gear/Resource Files/Red Shirt.tres" id="8_rny4c"]
+
+[node name="BlacksmithShop" type="PanelContainer"]
+visible = false
+offset_left = 241.0
+offset_top = 105.0
+offset_right = 862.0
+offset_bottom = 580.0
+script = ExtResource("1_2ec75")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="GoldAmount" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "500 gold"
+
+[node name="ShopItem" parent="VBoxContainer" instance=ExtResource("2_34kaa")]
+layout_mode = 2
+item = ExtResource("3_06ff3")
+
+[node name="ShopItem2" parent="VBoxContainer" instance=ExtResource("2_34kaa")]
+layout_mode = 2
+item = ExtResource("4_7016u")
+
+[node name="ShopItem3" parent="VBoxContainer" instance=ExtResource("2_34kaa")]
+layout_mode = 2
+item = ExtResource("5_p52d4")
+
+[node name="ShopItem4" parent="VBoxContainer" instance=ExtResource("2_34kaa")]
+layout_mode = 2
+item = ExtResource("6_1jb5t")
+
+[node name="ShopItem5" parent="VBoxContainer" instance=ExtResource("2_34kaa")]
+layout_mode = 2
+item = ExtResource("7_gqcmm")
+
+[node name="ShopItem6" parent="VBoxContainer" instance=ExtResource("2_34kaa")]
+layout_mode = 2
+item = ExtResource("8_rny4c")

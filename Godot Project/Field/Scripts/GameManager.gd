@@ -20,13 +20,15 @@ func _ready():
 	initialize_test_gear()
 
 func _physics_process(_delta):
-	talk_check()
-	pause_check()
+	#talk_check()
+	#pause_check()
+	pass
 
 func talk_check():
-	if dialogue_open:
-		if Input.is_action_just_pressed("ui_accept"):
-			close_dialogue()
+	pass
+	#if dialogue_open:
+		#if Input.is_action_just_pressed("ui_accept"):
+			#close_dialogue()
 
 func pause_check():
 	pass

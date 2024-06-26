@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ChoiceDialogue" load_steps=7 format=3 uid="uid://b5et4po62um8r"]
+
+[ext_resource type="Script" path="res://Field/Dialogue/ChoiceDialogue.gd" id="1_5j62w"]
+[ext_resource type="Script" path="res://Field/Dialogue/DialogueOption.gd" id="1_5lpw7"]
+[ext_resource type="Resource" uid="uid://vra2smdn5txx" path="res://Field/NPCs/Blacksmith/blacksmithshopline1.tres" id="1_jouea"]
+[ext_resource type="Resource" uid="uid://bd7qlh2dmu321" path="res://Field/NPCs/Blacksmith/blacksmithnoshopline1.tres" id="3_fxite"]
+
+[sub_resource type="Resource" id="Resource_ho6et"]
+script = ExtResource("1_5lpw7")
+text = "Buy"
+next = ExtResource("1_jouea")
+next_type = 2
+
+[sub_resource type="Resource" id="Resource_wpvxh"]
+script = ExtResource("1_5lpw7")
+text = "Gawk"
+next = ExtResource("3_fxite")
+next_type = 1
+
+[resource]
+script = ExtResource("1_5j62w")
+choices = Array[ExtResource("1_5lpw7")]([SubResource("Resource_ho6et"), SubResource("Resource_wpvxh")])
+text = "So, have ye come here to buy something, or just to gawk?"

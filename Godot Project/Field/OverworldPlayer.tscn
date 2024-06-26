@@ -3,14 +3,13 @@
 [ext_resource type="Script" path="res://Field/Scripts/FieldPlayer.gd" id="1_xqpv4"]
 [ext_resource type="Texture2D" uid="uid://cltg0avp5f7e5" path="res://icon.svg" id="2_ja2fs"]
 [ext_resource type="Script" path="res://Field/State Machine/StateMachine.gd" id="3_awrgn"]
-[ext_resource type="Script" path="res://Field/State Machine/States/Walk.gd" id="4_1lj7f"]
-[ext_resource type="Script" path="res://Field/State Machine/States/Menu.gd" id="5_6s68a"]
-[ext_resource type="Script" path="res://Field/State Machine/States/Dialogue.gd" id="6_ifid3"]
+[ext_resource type="Script" path="res://Field/State Machine/States/WalkState.gd" id="4_1lj7f"]
+[ext_resource type="Script" path="res://Field/State Machine/States/MenuState.gd" id="5_qw450"]
+[ext_resource type="Script" path="res://Field/State Machine/States/DialogueState.gd" id="6_ifid3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0vtb"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(520, 266)
 script = ExtResource("1_xqpv4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,7 +27,7 @@ initial_state = NodePath("Walk")
 script = ExtResource("4_1lj7f")
 
 [node name="Menu" type="Node" parent="StateMachine"]
-script = ExtResource("5_6s68a")
+script = ExtResource("5_qw450")
 
 [node name="Dialogue" type="Node" parent="StateMachine"]
 script = ExtResource("6_ifid3")

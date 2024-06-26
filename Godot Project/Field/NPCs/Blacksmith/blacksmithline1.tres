@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SingleDialogue" load_steps=2 format=3 uid="uid://bdasew1niek3t"]
+
+[ext_resource type="Script" path="res://Field/Dialogue/SingleDialogue.gd" id="1_dbc2m"]
+
+[resource]
+script = ExtResource("1_dbc2m")
+text = "Ho ho! What do we have here?"

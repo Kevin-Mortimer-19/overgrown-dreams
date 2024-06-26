@@ -1,4 +1,4 @@
-extends Node
+extends NPC
 
 var hello = "Welcome to the shop!"
 

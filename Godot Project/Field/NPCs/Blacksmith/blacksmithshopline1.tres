@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MenuDialogue" load_steps=3 format=3 uid="uid://vra2smdn5txx"]
+
+[ext_resource type="PackedScene" uid="uid://cefd7n080pot8" path="res://Field/Menus/blacksmith_shop.tscn" id="1_nkdm4"]
+[ext_resource type="Script" path="res://Field/Dialogue/MenuDialogue.gd" id="1_v3kx0"]
+
+[resource]
+script = ExtResource("1_v3kx0")
+prior_text_box = true
+menu = ExtResource("1_nkdm4")
+text = "Here's what I have for sale!"

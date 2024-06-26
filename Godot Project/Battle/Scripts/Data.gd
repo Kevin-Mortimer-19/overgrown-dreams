@@ -70,6 +70,12 @@ enum GearSlots {
 	ARMS = 2,
 }
 
+enum FieldStates {
+	WALK = 0,
+	DIALOGUE = 1,
+	MENU = 2,
+}
+
 func find_ailment(type: AilmentTypes) -> AilmentData:
 	match type:
 		AilmentTypes.FRAIL:
