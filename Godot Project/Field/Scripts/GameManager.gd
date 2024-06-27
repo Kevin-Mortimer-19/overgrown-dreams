@@ -22,6 +22,8 @@ func _ready():
 	initialize_test_gear()
 	var dialogue_state = get_node("Player/StateMachine/Dialogue")
 	dialogue_state.next_line.connect(open_dialogue)
+	
+	DialogueBox.advance.connect(dialogue_state.check_dialogue_UI)
 	#DialogueBox.advance.connect()
 	# Necessary??? ^^
 

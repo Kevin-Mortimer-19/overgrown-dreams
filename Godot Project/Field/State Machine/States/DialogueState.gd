@@ -19,6 +19,9 @@ func can_advance() -> bool:
 		return false
 
 func advance():
+	if current_line is SingleDialogue:
+		if not current_line.has_next():
+			call_deferred("end_dialogue")
 	current_line = current_line.next
 	next_line.emit(current_line)
 	#
@@ -35,6 +38,13 @@ func advance():
 	#elif current_line is ChoiceDialogue:
 		#pass
 		
+
+func end_dialogue():
+	state_machine.transition_to("Walk")
+
+func check_dialogue_UI(d: Dialogue):
+	if d != current_line:
+		current_line = d
 
 func enter(_msg = {}):
 	if _msg.has("NPC"):

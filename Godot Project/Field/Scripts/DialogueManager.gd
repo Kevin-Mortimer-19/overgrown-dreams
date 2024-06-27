@@ -3,7 +3,7 @@ extends PanelContainer
 @onready var text_field = $MarginContainer/RichTextLabel
 @onready var choice_box = get_node("/root/Town/DialogueChoices")
 
-signal advance
+signal advance(d: Dialogue)
 
 signal end
 
@@ -17,6 +17,7 @@ func set_dialogue(d: Dialogue):
 		print("SingleDialogue")
 		# Display text and wait for input
 		set_text(d.text)
+		advance.emit(current_line)
 	elif current_line is ChoiceDialogue:
 		# Display text and choices and wait for input
 		print("ChoiceDialogue")
@@ -25,7 +26,9 @@ func set_dialogue(d: Dialogue):
 			var db = DialogueButton.new(c)
 			db.info = c
 			choice_box.add_child(db)
-			#db.pressed.connect()
+			db.pressed.connect(set_dialogue.bind(db.info.next))
+		choice_box.visible = true
+		advance.emit(current_line)
 	elif current_line is MenuDialogue:
 		print("MenuDialogue")
 		if current_line.prior_text_box:
