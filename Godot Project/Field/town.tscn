@@ -96,6 +96,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p7ij0")
 
 [node name="DialogueManager" type="PanelContainer" parent="."]
+visible = false
 offset_left = 11.0
 offset_top = 484.0
 offset_right = 1146.0
@@ -113,6 +114,7 @@ text = "Hello this is text"
 [node name="BlacksmithShop" parent="." instance=ExtResource("14_m4r3w")]
 
 [node name="DialogueChoices" type="VBoxContainer" parent="."]
+visible = false
 offset_left = 825.0
 offset_top = 306.0
 offset_right = 1066.0
