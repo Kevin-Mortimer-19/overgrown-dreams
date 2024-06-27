@@ -95,6 +95,8 @@ modulate = Color(0.0352941, 0.572549, 1, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p7ij0")
 
+[node name="BlacksmithShop" parent="." instance=ExtResource("14_m4r3w")]
+
 [node name="DialogueManager" type="PanelContainer" parent="."]
 visible = false
 offset_left = 11.0
@@ -110,8 +112,6 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogueManager/MarginContainer"]
 layout_mode = 2
 text = "Hello this is text"
-
-[node name="BlacksmithShop" parent="." instance=ExtResource("14_m4r3w")]
 
 [node name="DialogueChoices" type="VBoxContainer" parent="."]
 visible = false

@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="SingleDialogue" load_steps=2 format=3 uid="uid://bdasew1niek3t"]
+[gd_resource type="Resource" script_class="SingleDialogue" load_steps=3 format=3 uid="uid://bdasew1niek3t"]
 
 [ext_resource type="Script" path="res://Field/Dialogue/SingleDialogue.gd" id="1_dbc2m"]
+[ext_resource type="Resource" uid="uid://b5et4po62um8r" path="res://Field/NPCs/Blacksmith/blacksmithline2.tres" id="1_lsoxu"]
 
 [resource]
 script = ExtResource("1_dbc2m")
+next = ExtResource("1_lsoxu")
 text = "Ho ho! What do we have here?"

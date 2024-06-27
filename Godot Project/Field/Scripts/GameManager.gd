@@ -13,48 +13,25 @@ var paused: bool
 var gear_m_open: bool
 var dialogue_open: bool
 
+
+
 func _ready():
 	pause_menu.set_parent(self)
 	paused = false
 	dialogue_open = false
 	initialize_test_gear()
+	var dialogue_state = get_node("Player/StateMachine/Dialogue")
+	dialogue_state.next_line.connect(open_dialogue)
+	#DialogueBox.advance.connect()
+	# Necessary??? ^^
 
 func _physics_process(_delta):
-	#talk_check()
-	#pause_check()
 	pass
-
-func talk_check():
-	pass
-	#if dialogue_open:
-		#if Input.is_action_just_pressed("ui_accept"):
-			#close_dialogue()
-
-func pause_check():
-	pass
-	#if Input.is_action_just_pressed("pause"):
-		#if paused:
-			#paused = false
-			#if gear_m_open:
-				#toggle_gear_menu()
-			#player.unlock_movement()
-			#pause_menu.visible = false
-		#elif not dialogue_open:
-			#paused = true
-			#player.lock_movement()
-			#pause_menu.visible = true
 
 func save():
 	Game_Data.save_game()
 
 func toggle_gear_menu():
-	#if gear_m_open:
-		#GearMenu.visible = false
-		#gear_m_open = false
-	#else:
-		#GearMenu.open_menu(GearMenu.current_tab)
-		#GearMenu.visible = true
-		#gear_m_open = true
 	get_node("Player/StateMachine/Menu").open_submenu(GearMenu)
 
 func toggle_shop():
@@ -74,8 +51,9 @@ func advance_dialogue():
 
 func close_dialogue():
 	DialogueBox.visible = false
+	
 	#dialogue_open = false
-	player.unlock_movement()
+	#player.unlock_movement()
 
 func initialize_blacksmith_shop():
 	var g = player.gold
@@ -91,18 +69,4 @@ func get_gold():
 	return player.gold
 
 func initialize_test_gear():
-	#var res1 = load("res://Field/Gear/Resource Files/Blue Gloves.tres")
-	#var res2 = load("res://Field/Gear/Resource Files/Blue Hat.tres")
-	#var res3 = load("res://Field/Gear/Resource Files/Blue Shirt.tres")
-	#var res4 = load("res://Field/Gear/Resource Files/Red Gloves.tres")
-	#var res5 = load("res://Field/Gear/Resource Files/Red Hat.tres")
-	#var res6 = load("res://Field/Gear/Resource Files/Red Shirt.tres")
-	#
-	#GearMenu.add_gear(res1)
-	#GearMenu.add_gear(res2)
-	#GearMenu.add_gear(res3)
-	#GearMenu.add_gear(res4)
-	#GearMenu.add_gear(res5)
-	#GearMenu.add_gear(res6)
-	
 	GearMenu.open_menu(GearMenu.current_tab)
