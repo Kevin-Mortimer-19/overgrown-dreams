@@ -63,15 +63,18 @@ func toggle_shop():
 	else:
 		shop.visible = true
 
-func open_dialogue(text: String):
+func open_dialogue(d: Dialogue):
 	DialogueBox.visible = true
-	DialogueBox.get_child(0).get_child(0).text = text
-	dialogue_open = true
-	player.lock_movement()
+	DialogueBox.set_dialogue(d)
+	#dialogue_open = true
+	#player.lock_movement()
+
+func advance_dialogue():
+	pass
 
 func close_dialogue():
 	DialogueBox.visible = false
-	dialogue_open = false
+	#dialogue_open = false
 	player.unlock_movement()
 
 func initialize_blacksmith_shop():

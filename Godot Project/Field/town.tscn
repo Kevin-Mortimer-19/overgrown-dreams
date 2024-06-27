@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b23a4ai5l3s6j"]
+[gd_scene load_steps=19 format=3 uid="uid://b23a4ai5l3s6j"]
 
 [ext_resource type="Script" path="res://Field/Scripts/GameManager.gd" id="1_2g3l5"]
 [ext_resource type="TileSet" uid="uid://b6hbhhntaeg0s" path="res://Field/town.tres" id="1_v51l1"]
@@ -7,12 +7,14 @@
 [ext_resource type="Script" path="res://Field/Scripts/PauseMenu.gd" id="5_2h7a0"]
 [ext_resource type="Script" path="res://Field/Scripts/GearMenu.gd" id="6_k44fs"]
 [ext_resource type="Resource" uid="uid://dlsni24p8vx2a" path="res://Field/Gear/Resource Files/Blue Gloves.tres" id="7_dnp4x"]
+[ext_resource type="Resource" uid="uid://bdasew1niek3t" path="res://Field/NPCs/Blacksmith/blacksmithline1.tres" id="12_8byd5"]
 [ext_resource type="Script" path="res://Field/NPCs/Blacksmith/BlacksmithNPC.gd" id="12_h1fqj"]
 [ext_resource type="Script" path="res://Field/Scripts/DialogueManager.gd" id="13_t6xe3"]
 [ext_resource type="PackedScene" uid="uid://dqeu7enyjkwie" path="res://Field/Menus/gear_sub_menu.tscn" id="13_vriui"]
 [ext_resource type="Resource" uid="uid://cfeihtgooai56" path="res://Field/Resources/Characters/HeinrichData.tres" id="14_imsjs"]
 [ext_resource type="PackedScene" uid="uid://cefd7n080pot8" path="res://Field/Menus/blacksmith_shop.tscn" id="14_m4r3w"]
 [ext_resource type="Resource" uid="uid://c68svo1mcjfj" path="res://Field/Resources/Characters/MarsData.tres" id="15_blfay"]
+[ext_resource type="Script" path="res://Field/Dialogue/DialogueButton.gd" id="15_wj5jv"]
 [ext_resource type="Resource" uid="uid://d056j204t81mh" path="res://Field/Resources/Characters/MedeaData.tres" id="16_j0j4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpg37"]
@@ -83,6 +85,7 @@ character = ExtResource("16_j0j4g")
 [node name="Blacksmith" type="StaticBody2D" parent="." groups=["NPC"]]
 position = Vector2(417, 255)
 script = ExtResource("12_h1fqj")
+default_dialogue = ExtResource("12_8byd5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blacksmith"]
 shape = SubResource("RectangleShape2D_cpg37")
@@ -93,7 +96,6 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p7ij0")
 
 [node name="DialogueManager" type="PanelContainer" parent="."]
-visible = false
 offset_left = 11.0
 offset_top = 484.0
 offset_right = 1146.0
@@ -109,3 +111,13 @@ layout_mode = 2
 text = "Hello this is text"
 
 [node name="BlacksmithShop" parent="." instance=ExtResource("14_m4r3w")]
+
+[node name="DialogueChoices" type="VBoxContainer" parent="."]
+offset_left = 825.0
+offset_top = 306.0
+offset_right = 1066.0
+offset_bottom = 474.0
+
+[node name="Button" type="Button" parent="DialogueChoices"]
+layout_mode = 2
+script = ExtResource("15_wj5jv")
