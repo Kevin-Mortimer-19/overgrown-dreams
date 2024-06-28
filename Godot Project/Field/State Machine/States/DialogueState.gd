@@ -9,7 +9,6 @@ var reading_prior_message: bool = false
 
 func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and can_advance():
-		print("advancing dialogue")
 		advance()
 
 func can_advance() -> bool:
@@ -22,22 +21,14 @@ func advance():
 	if current_line is SingleDialogue:
 		if not current_line.has_next():
 			call_deferred("end_dialogue")
-	current_line = current_line.next
-	next_line.emit(current_line)
-	#
-	#if current_line is SingleDialogue and current_line.has_next:
-		#current_line = current_line.next
-	#elif current_line is SingleDialogue and not current_line.has_next:
-		#state_machine.transition_to("Walk")
-	#elif current_line is MenuDialogue and reading_prior_message:
-		#pass
-		## Transition to menu scene with next variable
-	#elif current_line is MenuDialogue and not reading_prior_message:
-		#pass
-		## Shouldn't ever happen
-	#elif current_line is ChoiceDialogue:
-		#pass
-		
+		current_line = current_line.next
+		next_line.emit(current_line)
+	elif current_line is MenuDialogue and reading_prior_message:
+		reading_prior_message = false
+		state_machine.transition_to("Menu", {"Menu" : current_line.menu})
+
+func read_prior_message():
+	reading_prior_message = true
 
 func end_dialogue():
 	state_machine.transition_to("Walk")

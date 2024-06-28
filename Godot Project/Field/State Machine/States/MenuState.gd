@@ -1,9 +1,11 @@
 extends PlayerState
 
+var menu: PackedScene = null
+
 var submenu_open: bool = false
 var submenu: Control = null
 
-signal menu_open
+signal menu_open(m: PackedScene)
 signal menu_close
 
 func _ready():
@@ -17,8 +19,8 @@ func _ready():
 	# help prevent some bugs that are difficult to understand.
 	assert(player != null)
 
-	menu_open.connect(open_submenu)
-	menu_close.connect(close_submenu)
+	#menu_open.connect(open_submenu)
+	#menu_close.connect(close_submenu)
 
 func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") && submenu_open:
@@ -38,7 +40,14 @@ func close_submenu():
 		submenu = null
 
 func enter(_msg = {}):
-	player.get_parent().pause_menu.visible = true
+	if _msg.has("Menu"):
+		menu = _msg["Menu"]
+		menu_open.emit(menu)
+	else:
+		player.get_parent().pause_menu.visible = true
 
 func exit(_msg = {}):
+	if menu != null:
+		menu_close.emit()
+		menu = null
 	player.get_parent().pause_menu.visible = false

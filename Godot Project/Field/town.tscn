@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b23a4ai5l3s6j"]
+[gd_scene load_steps=18 format=3 uid="uid://b23a4ai5l3s6j"]
 
 [ext_resource type="Script" path="res://Field/Scripts/GameManager.gd" id="1_2g3l5"]
 [ext_resource type="TileSet" uid="uid://b6hbhhntaeg0s" path="res://Field/town.tres" id="1_v51l1"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Field/Scripts/DialogueManager.gd" id="13_t6xe3"]
 [ext_resource type="PackedScene" uid="uid://dqeu7enyjkwie" path="res://Field/Menus/gear_sub_menu.tscn" id="13_vriui"]
 [ext_resource type="Resource" uid="uid://cfeihtgooai56" path="res://Field/Resources/Characters/HeinrichData.tres" id="14_imsjs"]
-[ext_resource type="PackedScene" uid="uid://cefd7n080pot8" path="res://Field/Menus/blacksmith_shop.tscn" id="14_m4r3w"]
 [ext_resource type="Resource" uid="uid://c68svo1mcjfj" path="res://Field/Resources/Characters/MarsData.tres" id="15_blfay"]
 [ext_resource type="Script" path="res://Field/Dialogue/DialogueButton.gd" id="15_wj5jv"]
 [ext_resource type="Resource" uid="uid://d056j204t81mh" path="res://Field/Resources/Characters/MedeaData.tres" id="16_j0j4g"]
@@ -94,8 +93,6 @@ shape = SubResource("RectangleShape2D_cpg37")
 modulate = Color(0.0352941, 0.572549, 1, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p7ij0")
-
-[node name="BlacksmithShop" parent="." instance=ExtResource("14_m4r3w")]
 
 [node name="DialogueManager" type="PanelContainer" parent="."]
 visible = false

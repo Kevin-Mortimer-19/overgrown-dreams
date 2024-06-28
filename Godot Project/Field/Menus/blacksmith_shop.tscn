@@ -10,7 +10,6 @@
 [ext_resource type="Resource" uid="uid://c47dbx8fg0jmu" path="res://Field/Gear/Resource Files/Red Shirt.tres" id="8_rny4c"]
 
 [node name="BlacksmithShop" type="PanelContainer"]
-visible = false
 offset_left = 241.0
 offset_top = 105.0
 offset_right = 862.0

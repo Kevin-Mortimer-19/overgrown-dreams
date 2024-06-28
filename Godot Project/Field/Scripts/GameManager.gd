@@ -7,12 +7,13 @@ var Game_Data: GameData = load("res://Field/Resources/GameData.tres")
 
 @onready var GearMenu = $GearMenu2
 @onready var DialogueBox = $DialogueManager
-@onready var shop = $BlacksmithShop
+#@onready var shop = $BlacksmithShop
 
 var paused: bool
 var gear_m_open: bool
 var dialogue_open: bool
 
+var currently_open_menu
 
 
 func _ready():
@@ -23,7 +24,14 @@ func _ready():
 	var dialogue_state = get_node("Player/StateMachine/Dialogue")
 	dialogue_state.next_line.connect(open_dialogue)
 	
+	var menu_state = get_node("Player/StateMachine/Menu")
+	menu_state.menu_open.connect(open_menu)
+	menu_state.menu_close.connect(close_menu)
+	
+	
 	DialogueBox.advance.connect(dialogue_state.check_dialogue_UI)
+	DialogueBox.approaching_menu.connect(dialogue_state.read_prior_message)
+	#DialogueBox.open_menu.connect(open_menu)
 	#DialogueBox.advance.connect()
 	# Necessary??? ^^
 
@@ -36,11 +44,11 @@ func save():
 func toggle_gear_menu():
 	get_node("Player/StateMachine/Menu").open_submenu(GearMenu)
 
-func toggle_shop():
-	if shop.visible == true:
-		shop.visible = false
-	else:
-		shop.visible = true
+#func toggle_shop():
+	#if shop.visible == true:
+		#shop.visible = false
+	#else:
+		#shop.visible = true
 
 func open_dialogue(d: Dialogue):
 	DialogueBox.visible = true
@@ -59,6 +67,13 @@ func close_dialogue():
 
 func initialize_blacksmith_shop():
 	var g = player.gold
+
+func open_menu(m: PackedScene):
+	currently_open_menu = m.instantiate()
+	add_child(currently_open_menu)
+
+func close_menu():
+	currently_open_menu.queue_free()
 
 func buy_gear(gear: Equipment) -> bool:
 	if player.spend(gear.cost):
