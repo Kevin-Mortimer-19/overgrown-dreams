@@ -6,6 +6,8 @@ var movement_locked: bool
 
 var gold: int = 500
 
+@onready var state_machine = $StateMachine
+
 signal enter_dialogue(body: StaticBody2D)
 
 func _ready():
@@ -41,3 +43,6 @@ func spend(value: int) -> bool:
 		return true
 	else:
 		return false
+
+func find_state(s: String) -> PlayerState:
+	return state_machine.get_node(s)

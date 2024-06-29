@@ -10,7 +10,6 @@ func _ready():
 	# in a scene other than `Player.tscn`, which would be unintended. This can
 	# help prevent some bugs that are difficult to understand.
 	assert(player != null)
-
 	player.enter_dialogue.connect(open_dialogue)
 
 func update(_delta: float) -> void:

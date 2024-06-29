@@ -7,31 +7,22 @@ var Game_Data: GameData = load("res://Field/Resources/GameData.tres")
 
 @onready var GearMenu = $GearMenu2
 @onready var DialogueBox = $DialogueManager
-#@onready var shop = $BlacksmithShop
-
-var paused: bool
-var gear_m_open: bool
-var dialogue_open: bool
 
 var currently_open_menu
 
 
 func _ready():
 	pause_menu.set_parent(self)
-	paused = false
-	dialogue_open = false
 	initialize_test_gear()
-	var dialogue_state = get_node("Player/StateMachine/Dialogue")
+	var dialogue_state = player.find_state("Dialogue")
 	dialogue_state.next_line.connect(open_dialogue)
 	
-	var menu_state = get_node("Player/StateMachine/Menu")
+	var menu_state = player.find_state("Menu")
 	menu_state.menu_open.connect(open_menu)
 	menu_state.menu_close.connect(close_menu)
 	
-	
 	DialogueBox.advance.connect(dialogue_state.check_dialogue_UI)
 	DialogueBox.approaching_menu.connect(dialogue_state.read_prior_message)
-	#DialogueBox.open_menu.connect(open_menu)
 	#DialogueBox.advance.connect()
 	# Necessary??? ^^
 
@@ -44,26 +35,12 @@ func save():
 func toggle_gear_menu():
 	get_node("Player/StateMachine/Menu").open_submenu(GearMenu)
 
-#func toggle_shop():
-	#if shop.visible == true:
-		#shop.visible = false
-	#else:
-		#shop.visible = true
-
 func open_dialogue(d: Dialogue):
 	DialogueBox.visible = true
 	DialogueBox.set_dialogue(d)
-	#dialogue_open = true
-	#player.lock_movement()
-
-func advance_dialogue():
-	pass
 
 func close_dialogue():
 	DialogueBox.visible = false
-	
-	#dialogue_open = false
-	#player.unlock_movement()
 
 func initialize_blacksmith_shop():
 	var g = player.gold

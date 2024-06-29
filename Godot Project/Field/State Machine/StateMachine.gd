@@ -19,6 +19,8 @@ func _process(_delta: float) -> void :
 func _physics_process(_delta: float) -> void :
 	current_state.physics_update(_delta)
 
+func get_current_state() -> String:
+	return current_state.name
 
 func transition_to(target_state_name: String, msg: Dictionary = {}):
 	# Safety check, you could use an assert() here to report an error if the state name is incorrect.

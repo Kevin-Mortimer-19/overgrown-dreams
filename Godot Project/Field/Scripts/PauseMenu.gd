@@ -13,8 +13,6 @@ signal load
 func _ready():
 	gear_b.pressed.connect(open_gear_menu)
 	save_b.pressed.connect(parent_save)
-	item_b.pressed.connect(test_open_shop)
-	
 
 func set_parent(o: Object):
 	parent = o
@@ -27,6 +25,3 @@ func open_item_menu():
 
 func open_gear_menu():
 	parent.toggle_gear_menu()
-
-func test_open_shop():
-	parent.toggle_shop()
